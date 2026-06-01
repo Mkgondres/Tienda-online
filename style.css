@@ -1,21 +1,33 @@
-/* ==========================================================================
-   1. VARIABLES DE DISEÑO (ESTÉTIQUE PREMIUM)
-   ========================================================================== */
+/* ============================
+   RESINA LUXA – STYLESHEET
+   Primera parte: Estilos base, Navbar, Hero, Catálogo y Productos
+   ============================ */
+
+/* ---------- Custom Properties ---------- */
 :root {
-    --color-bg: #0a0a0a;          /* Negro absoluto de fondo */
-    --color-surface: #121212;     /* Negro aligerado para las tarjetas de productos */
-    --color-primary: #d4af37;     /* Oro sutil/champán para detalles exclusivos */
-    --color-text-main: #f9f9f9;   /* Blanco puro suave para textos principales */
-    --color-text-muted: #8e8e93;  /* Gris sofisticado para descripciones */
-    --font-display: 'Cinzel', serif;
-    --font-body: 'Montserrat', sans-serif;
-    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --color-fondo: #0b0a0a;
+    --color-fondo-claro: #131313;
+    --color-blanco: #f8f5f0;
+    --color-dorado: #c9a96e;
+    --color-dorado-oscuro: #a6844b;
+    --color-gris: #999;
+    --color-gris-claro: #222;
+    --color-texto: #e3dfd8;
+    --color-texto-claro: #b0aca5;
+
+    --fuente-titulos: 'Playfair Display', 'Times New Roman', serif;
+    --fuente-cuerpo: 'Lato', 'Helvetica Neue', sans-serif;
+
+    --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --sombra-dorada: 0 0 20px rgba(201, 169, 110, 0.3);
+    --borde-dorado: 1px solid rgba(201, 169, 110, 0.3);
+    --transicion: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ==========================================================================
-   2. RESET Y REGLAS GLOBALES
-   ========================================================================== */
-* {
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,675 +35,858 @@
 
 html {
     scroll-behavior: smooth;
-    background-color: var(--color-bg);
-    color: var(--color-text-main);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
 }
 
 body {
+    font-family: var(--fuente-cuerpo);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.7;
     overflow-x: hidden;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transicion);
+}
+
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    height: auto;
     display: block;
 }
 
-/* ==========================================================================
-   3. CABECERA Y CARRITO DE COMPRAS
-   ========================================================================== */
+/* ---------- Tipografía ---------- */
+h1, h2, h3, h4 {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    color: var(--color-blanco);
+    line-height: 1.3;
+}
+
+p {
+    font-size: 1rem;
+    color: var(--color-texto-claro);
+    margin-bottom: 1.2rem;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all var(--transicion);
+    background: transparent;
+    color: var(--color-blanco);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--color-dorado);
+    color: #0b0a0a;
+    box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--color-dorado-oscuro);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(201, 169, 110, 0.5);
+}
+
+.btn-comprar {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--color-dorado);
+    color: var(--color-dorado);
+    margin-top: 1.2rem;
+}
+
+.btn-comprar:hover {
+    background: var(--color-dorado);
+    color: #0b0a0a;
+    box-shadow: var(--sombra-dorada);
+}
+
+.btn-accent {
+    background: var(--color-dorado);
+    color: #0b0a0a;
+    width: 100%;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--color-gris);
+    cursor: pointer;
+    transition: color var(--transicion);
+}
+
+.btn-close:hover {
+    color: var(--color-dorado);
+}
+
+/* ---------- Overlay genérico ---------- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ============================
+   NAVBAR
+   ============================ */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    padding: 30px 60px;
+    padding: 1.2rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: var(--transition-smooth);
+    z-index: 100;
+    background: rgba(11, 10, 10, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: var(--borde-dorado);
+    transition: background 0.4s ease;
 }
 
-/* Efecto visual cuando se hace scroll (se activa mediante clases) */
-.navbar.scrolled {
-    padding: 18px 60px;
-    background-color: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.brand-logo {
-    font-family: var(--font-display);
+.logo a {
+    font-family: var(--fuente-titulos);
     font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 7px;
-    color: var(--color-text-main);
-    text-decoration: none;
+    letter-spacing: 0.2rem;
+    color: var(--color-blanco);
+    font-weight: 700;
 }
 
-.nav-menu {
+.logo span {
+    color: var(--color-dorado);
+    font-style: italic;
+}
+
+.nav-links {
     display: flex;
-    gap: 40px;
+    align-items: center;
+    gap: 2.5rem;
 }
 
-.nav-link {
-    font-size: 0.8rem;
+.nav-links a {
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--color-text-muted);
-    text-decoration: none;
-    font-weight: 400;
-    transition: var(--transition-smooth);
-}
-
-.nav-link:hover {
-    color: var(--color-primary);
-}
-
-/* Botón de Carrito de Compras Premium */
-.cart-wrapper {
+    letter-spacing: 0.15rem;
+    color: var(--color-texto-claro);
     position: relative;
+    padding-bottom: 4px;
 }
 
-.cart-toggle-btn {
-    background: transparent;
-    border: none;
-    color: var(--color-text-main);
-    font-size: 1.3rem;
-    cursor: pointer;
-    position: relative;
-    padding: 5px;
-    transition: var(--transition-smooth);
-}
-
-.cart-toggle-btn:hover {
-    color: var(--color-primary);
-    transform: scale(1.05);
-}
-
-.cart-counter {
+.nav-links a::after {
+    content: '';
     position: absolute;
-    top: -5px;
-    right: -8px;
-    background-color: var(--color-primary);
-    color: var(--color-bg);
-    font-family: var(--font-body);
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-dorado);
+    transition: width var(--transicion);
+}
+
+.nav-links a:hover {
+    color: var(--color-blanco);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.cart-icon {
+    position: relative;
+    font-size: 1.4rem;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: var(--color-dorado);
+    color: #0b0a0a;
     font-size: 0.7rem;
-    font-weight: 600;
-    width: 18px;
-    height: 18px;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 18px;
+    height: 18px;
 }
 
-/* ==========================================================================
-   4. SECCIÓN HERO (PORTADA CINEMATOGRÁFICA)
-   ========================================================================== */
+/* ============================
+   HERO CON VIDEO
+   ============================ */
 .hero {
     position: relative;
     height: 100vh;
-    width: 100%;
+    min-height: 650px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-}
-
-.video-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    justify-content: center;
     overflow: hidden;
 }
 
-.bg-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.video-overlay {
+.hero-video {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: auto;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.9) 100%);
+    min-width: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
 }
 
-.hero-content {
-    max-width: 900px;
-    padding: 0 20px;
+.hero-overlay {
+    position: relative;
     z-index: 2;
-}
-
-.hero-subtitle {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: var(--color-primary);
-    margin-bottom: 25px;
-    font-weight: 600;
+    text-align: center;
+    padding: 0 5%;
+    max-width: 800px;
+    background: radial-gradient(circle, rgba(11,10,10,0.7) 0%, transparent 70%);
 }
 
 .hero-title {
-    font-family: var(--font-display);
-    font-size: 3.8rem;
-    font-weight: 400;
-    letter-spacing: 2px;
-    line-height: 1.2;
-    margin-bottom: 45px;
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.3rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    color: var(--color-blanco);
 }
 
-/* Botón de Acción Principal */
-.btn-primary {
-    display: inline-block;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    background-color: var(--color-primary);
-    color: var(--color-bg);
-    padding: 18px 45px;
-    font-weight: 600;
-    border: 1px solid var(--color-primary);
-    text-decoration: none;
-    transition: var(--transition-smooth);
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    background-color: transparent;
-    color: var(--color-primary);
-}
-
-/* Controlador de Audio ASMR */
-.audio-toggle {
-    position: absolute;
-    bottom: 40px;
-    right: 60px;
-    z-index: 10;
-    background: rgba(18, 18, 18, 0.5);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--color-text-main);
-    padding: 12px 24px;
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: var(--transition-smooth);
-}
-
-.audio-toggle:hover {
-    border-color: var(--color-primary);
-    background: rgba(18, 18, 18, 0.9);
-}
-
-.audio-icon {
-    margin-right: 10px;
-}
-
-/* ==========================================================================
-   5. MAQUETACIÓN DE LA TIENDA Y GRILLAS
-   ========================================================================== */
-.store-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 100px 60px;
-}
-
-.section-intro {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 100px auto;
-}
-
-.section-intro h2 {
-    font-family: var(--font-display);
-    font-size: 2.8rem;
-    letter-spacing: 4px;
-    margin-bottom: 20px;
-    font-weight: 400;
-}
-
-.section-intro p {
-    color: var(--color-text-muted);
-    font-size: 1rem;
-    line-height: 1.6;
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
     font-weight: 300;
 }
 
-.product-section {
-    margin-bottom: 120px;
+/* ============================
+   CARRITO LATERAL (sidebar)
+   ============================ */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 420px;
+    max-width: 90vw;
+    height: 100vh;
+    background: var(--color-fondo-claro);
+    z-index: 110;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.7);
+    border-left: var(--borde-dorado);
 }
 
-.category-info {
-    margin-bottom: 50px;
+.cart-sidebar.open {
+    right: 0;
 }
 
-.category-info h3 {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    color: var(--color-text-main);
-}
-
-.category-info p {
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-    max-width: 800px;
-    line-height: 1.6;
-    font-weight: 300;
-}
-
-/* Sistema de Rejilla de Productos (E-commerce Grid) */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas simétricas de lujo */
-    gap: 50px;
-}
-/* ==========================================================================
-   6. TARJETAS DE PRODUCTO (HOVER EFFECTS DE ALTA GAMA)
-   ========================================================================== */
-.product-card {
-    background-color: var(--color-surface);
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Efecto de elevación sutil al pasar el mouse por encima */
-.product-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(214, 175, 55, 0.2);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7);
-}
-
-.product-image-container {
-    height: 420px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer; /* Indica al usuario que la foto es interactiva */
-}
-
-/* Zoom elegante en la imagen del producto */
-.product-image-container img {
-    transition: var(--transition-smooth);
-}
-
-.product-card:hover .product-image-container img {
-    transform: scale(1.04);
-}
-
-.product-details {
-    padding: 35px;
-}
-
-.product-details h4 {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    font-weight: 400;
-}
-
-.product-description {
-    color: var(--color-text-muted);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    font-weight: 300;
-}
-
-.product-meta {
+.cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.2);
 }
 
-.product-price {
-    font-family: var(--font-display);
-    color: var(--color-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-/* Botón Añadir al Carrito (Boutique Style) */
-.btn-add-cart {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: var(--color-text-main);
-    padding: 12px 24px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-}
-
-.btn-add-cart:hover {
-    background-color: var(--color-text-main);
-    color: var(--color-bg);
-    border-color: var(--color-text-main);
-}
-
-/* ==========================================================================
-   7. SECCIÓN ATELIER: DISEÑOS EXCLUSIVOS A MEDIDA
-   ========================================================================== */
-.custom-atelier-section {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 100px;
-}
-
-.custom-order-container {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 60px;
-    align-items: center;
-    background-color: #0d0d0d;
-    padding: 60px;
-    border: 1px solid rgba(214, 175, 55, 0.08);
-}
-
-.custom-order-image {
-    height: 480px;
-}
-
-.custom-order-info h4 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    font-weight: 400;
-}
-
-.price-range-indicator {
-    color: var(--color-primary);
-    font-size: 1.05rem;
-    margin-bottom: 25px;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-.custom-benefits {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-    line-height: 2;
-    margin-bottom: 40px;
-    font-weight: 300;
-}
-
-/* Botón Secundario de Alta Gama */
-.btn-secondary {
-    display: inline-block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
-    padding: 16px 35px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: var(--transition-smooth);
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-bg);
-}
-
-/* ==========================================================================
-   8. PASARELA DE PAGOS SEGUROS (INTEGRACIÓN PAYPAL)
-   ========================================================================== */
-.checkout-trust-section {
-    text-align: center;
-    padding: 90px 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    margin-top: 40px;
-}
-
-.checkout-trust-section h3 {
-    font-family: var(--font-display);
+.cart-header h2 {
     font-size: 1.6rem;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-    font-weight: 400;
+    color: var(--color-dorado);
 }
 
-.checkout-trust-section p {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 45px;
-    font-weight: 300;
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    margin: 1.5rem 0;
+    padding-right: 0.5rem;
 }
 
-.payment-methods-grid {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
+.cart-empty {
+    color: var(--color-gris);
+    text-align: center;
+    margin-top: 3rem;
 }
 
-.payment-badge {
+.cart-footer {
+    border-top: 1px solid rgba(201, 169, 110, 0.2);
+    padding-top: 1.5rem;
+}
+
+.cart-total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-blanco);
+    margin-bottom: 1rem;
+}
+
+#cart-total-price {
+    color: var(--color-dorado);
+    font-size: 1.4rem;
+}
+
+/* ============================
+   CATÁLOGO (SECTION)
+   ============================ */
+.catalogo-section {
+    padding: 8rem 5% 5rem;
+    background: var(--color-fondo);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 2px;
+    background: var(--color-dorado);
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--color-texto-claro);
+}
+
+/* Grid de productos */
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ============================
+   TARJETAS DE PRODUCTO
+   ============================ */
+.producto-card {
+    background: var(--color-fondo-claro);
+    border: var(--borde-dorado);
+    border-radius: 1px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 12px;
 }
 
-/* Estilo premium para los logos de pago (escala de grises que recobra color al hover) */
-.payment-badge img {
-    height: 35px;
-    width: auto;
-    object-fit: contain;
-    filter: grayscale(100%) brightness(160%);
-    transition: var(--transition-smooth);
+.producto-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-dorada), var(--sombra-suave);
 }
 
-.payment-badge:hover img {
-    filter: grayscale(0%) brightness(100%);
+.producto-img {
+    height: 280px;
+    overflow: hidden;
+    background: #1a1a1a;
+    position: relative;
 }
 
-.payment-badge span {
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    font-weight: 400;
-}
-
-/* ==========================================================================
-   9. INTERFAZ MODAL / LIGHTBOX (OFERTA DETALLADA AMPLIRADA)
-   ========================================================================== */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+.producto-img img {
     width: 100%;
     height: 100%;
-    background-color: rgba(5, 5, 5, 0.96); /* Fondo ultra oscuro y nítido */
-    backdrop-filter: blur(25px);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    transition: var(--transition-smooth);
+    object-fit: cover;
+    transition: transform 0.6s ease;
 }
 
-.modal-wrapper {
-    background-color: var(--color-surface);
-    border: 1px solid rgba(214, 175, 55, 0.15);
-    max-width: 1150px;
-    width: 100%;
-    max-height: 85vh;
-    position: relative;
-    overflow-y: auto; /* Permite scroll interno si es necesario en pantallas chicas */
+.producto-card:hover .producto-img img {
+    transform: scale(1.03);
 }
 
-.modal-close-btn {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    background: transparent;
-    border: none;
-    color: var(--color-text-main);
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 10;
-    transition: var(--transition-smooth);
-}
-
-.modal-close-btn:hover {
-    color: var(--color-primary);
-    transform: rotate(90deg);
-}
-
-.modal-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    min-height: 580px;
-}
-
-.modal-image-zoom {
-    background-color: #000;
-    overflow: hidden;
-}
-
-.modal-info-extended {
-    padding: 60px;
+.producto-info {
+    padding: 2rem 1.8rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    flex: 1;
 }
 
-.modal-tag-exclusivo {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--color-primary);
-    margin-bottom: 15px;
+.producto-nombre {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--color-blanco);
     font-weight: 600;
 }
 
-.modal-info-extended h3 {
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    font-weight: 400;
-}
-
-.modal-price {
-    font-family: var(--font-display);
-    font-size: 1.7rem;
-    color: var(--color-primary);
-    margin-bottom: 35px;
-    font-weight: 600;
-}
-
-.modal-description-block h5 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    color: var(--color-text-main);
-}
-
-.modal-description-block p {
-    color: var(--color-text-muted);
+.producto-descripcion {
     font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    font-weight: 300;
+    margin-bottom: 1.2rem;
+    color: var(--color-texto-claro);
 }
 
-.luxury-specs-list {
+.producto-materiales {
     list-style: none;
-    margin-bottom: 40px;
-}
-
-.luxury-specs-list li {
     font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-bottom: 12px;
+    color: var(--color-gris);
+    margin-bottom: 1.5rem;
+    padding: 0;
+}
+
+.producto-materiales li {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+.producto-materiales strong {
+    color: var(--color-dorado);
+    font-weight: 600;
+}
+
+.producto-precio {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.precio {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-dorado);
+    font-family: var(--fuente-titulos);
+}
+
+.precio-cuotas {
+    font-size: 0.75rem;
+    color: var(--color-gris);
+    margin-top: 0.2rem;
+}
+
+/* 
+   ██████████████████████████████████████████████████
+   PRIMERA MITAD DEL CSS TERMINA AQUÍ
+   (La segunda parte incluirá: estilos del checkout, 
+   footer, responsive design y animaciones)
+   ██████████████████████████████████████████████████
+*//* ============================
+   RESINA LUXA – STYLESHEET
+   Segunda parte: Checkout, Footer, Responsive y Ajustes finales
+   ============================ */
+
+/* ---------- CHECKOUT (Modal de pago) ---------- */
+.checkout-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--color-fondo-claro);
+    border: var(--borde-dorado);
+    z-index: 120;
+    padding: 2.5rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s cubic-bezier(0.2, 0.9, 0.38, 1);
+}
+
+.checkout-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.checkout-container {
     position: relative;
-    padding-left: 22px;
-    font-weight: 300;
 }
 
-.luxury-specs-list li::before {
-    content: "▫";
+.checkout-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.8rem;
+    color: var(--color-dorado);
+    border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+    padding-bottom: 1rem;
+}
+
+#close-checkout {
     position: absolute;
-    left: 0;
-    color: var(--color-primary);
+    top: 0;
+    right: 0;
+    font-size: 2.2rem;
+    background: none;
+    border: none;
+    color: var(--color-gris);
+    cursor: pointer;
 }
 
-.modal-payment-notice {
-    background-color: rgba(255, 255, 255, 0.01);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 15px;
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-    margin-bottom: 30px;
-    text-align: center;
+#close-checkout:hover {
+    color: var(--color-dorado);
+}
+
+.checkout-resumen {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    border-left: 3px solid var(--color-dorado);
+}
+
+.checkout-resumen h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--color-blanco);
+}
+
+#checkout-lista {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+#checkout-lista li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+}
+
+.checkout-total {
+    font-size: 1.3rem;
+    text-align: right;
+    margin-top: 0.8rem;
+}
+
+#checkout-total-display {
+    color: var(--color-dorado);
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+/* Formulario de pago */
+.payment-form fieldset {
+    border: none;
+    margin-bottom: 1.8rem;
+}
+
+.payment-form legend {
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+    color: var(--color-dorado);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-texto-claro);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 2px;
+    color: var(--color-blanco);
+    font-family: var(--fuente-cuerpo);
+    font-size: 1rem;
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-dorado);
+    box-shadow: 0 0 10px rgba(201, 169, 110, 0.3);
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
 }
 
 .btn-block {
     width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.secure-notice {
     text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-gris);
+    margin-top: 1rem;
 }
 
-/* ==========================================================================
-   10. FOOTER ULTRA-MINIMALISTA
-   ========================================================================== */
-.main-footer {
-    padding: 70px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.02);
+.payment-success {
     text-align: center;
+    padding: 2rem;
+    animation: fadeInUp 0.6s ease;
 }
 
-.footer-container p {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    color: var(--color-text-muted);
-    margin-bottom: 12px;
+.payment-success h3 {
+    font-size: 2rem;
+    color: var(--color-dorado);
+    margin-bottom: 1rem;
 }
 
-.footer-legal {
-    font-family: var(--font-display);
-    color: rgba(214, 175, 55, 0.4) !important;
-    font-size: 0.65rem !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.payment-success p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-/* ==========================================================================
-   11. DISEÑO ADAPTABLE (RESPONSIVE)
-   ========================================================================== */
-@media (max-width: 968px) {
-    .product-grid, .custom-order-container, .modal-grid {
-        grid-template-columns: 1fr;
+/* Animación para el mensaje de éxito */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    .navbar { padding: 20px 30px; }
-    .navbar.scrolled { padding: 15px 30px; }
-    .hero-title { font-size: 2.6rem; }
-    .store-container { padding: 60px 20px; }
-    .custom-order-container { padding: 30px; gap: 30px; }
-    .custom-order-image { height: 320px; }
-    .modal-wrapper { max-height: 95vh; }
-    .modal-info-extended { padding: 35px; }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    background: #070606;
+    border-top: var(--borde-dorado);
+    padding: 4rem 5% 2rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-col h4 {
+    font-size: 1.3rem;
+    color: var(--color-dorado);
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 1px;
+    background: var(--color-dorado);
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201, 169, 110, 0.15);
+    font-size: 0.8rem;
+    color: var(--color-gris);
+}
+
+/* ============================
+   MEDIA QUERIES (Responsive)
+   ============================ */
+
+/* Tablets grandes y pantallas pequeñas */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .cart-sidebar {
+        width: 380px;
+    }
+}
+
+/* Tablets verticales y móviles grandes */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 4%;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+    }
+
+    .hero {
+        height: 80vh;
+        min-height: 500px;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2.4rem;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .producto-card {
+        max-width: 100%;
+    }
+
+    .checkout-modal {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.8rem 3%;
+    }
+
+    .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .producto-info {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .producto-nombre {
+        font-size: 1.3rem;
+    }
+
+    .precio {
+        font-size: 1.5rem;
+    }
+
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+/* Ajuste para dispositivos con hover (escritorio) */
+@media (hover: hover) {
+    .producto-card:hover .producto-img img {
+        transform: scale(1.05);
+    }
+}
+
+/* Ajustes de scrollbar para el carrito (solo WebKit) */
+.cart-items::-webkit-scrollbar {
+    width: 5px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background: var(--color-dorado);
+    border-radius: 2px;
 }
