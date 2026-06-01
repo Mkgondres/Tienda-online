@@ -1,0 +1,375 @@
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO Y RESETEO GLOBAL
+   ========================================================================== */
+:root {
+    --color-primario: #2563eb;       /* Azul moderno para botones y enlaces */
+    --color-primario-hover: #1d4ed8; /* Azul más oscuro para los hovers */
+    --color-exito: #10b981;          /* Verde para precios y éxito */
+    --color-oscuro: #1f2937;         /* Gris oscuro para textos principales */
+    --color-claro: #f3f4f6;          /* Gris claro para fondos */
+    --color-blanco: #ffffff;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --sombra: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transicion: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-claro);
+    color: var(--color-oscuro);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. ENCABEZADO (HEADER)
+   ========================================================================== */
+.header {
+    background-color: var(--color-blanco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--sombra);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--color-oscuro);
+}
+
+.logo h1 span {
+    color: var(--color-primario);
+}
+
+.contenedor-carrito-icono {
+    position: relative;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-carrito-icono svg {
+    stroke: var(--color-oscuro);
+    transition: var(--transicion);
+}
+
+.contenedor-carrito-icono:hover svg {
+    stroke: var(--color-primario);
+}
+
+#contador-carrito {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================================
+   3. ESTRUCTURA PRINCIPAL (LAYOUT)
+   ========================================================================== */
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr; /* Por defecto en móvil, una sola columna */
+    gap: 20px;
+}
+
+/* ==========================================================================
+   4. PANEL DE FILTROS
+   ========================================================================== */
+.panel-filtros {
+    background-color: var(--color-blanco);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    height: fit-content;
+}
+
+.panel-filtros h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-claro);
+    padding-bottom: 8px;
+}
+
+.grupo-filtro {
+    margin-bottom: 20px;
+}
+
+.grupo-filtro h3 {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: #6b7280;
+}
+
+#contenedor-botones-categoria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn-categoria {
+    background-color: var(--color-claro);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn-categoria:hover, .btn-categoria.activo {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+select, input[type="range"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: var(--color-blanco);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   5. SECCIÓN DE PRODUCTOS Y TARJETAS
+   ========================================================================== */
+.seccion-productos h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.cuadrícula-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-producto {
+    background-color: var(--color-blanco);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: var(--sombra);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor-imagen {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contenedor-imagen img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.info-producto h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-oscuro);
+    margin-bottom: 8px;
+    height: 45px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.precio-producto {
+    color: var(--color-exito);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.btn-agregar-carrito {
+    width: 100%;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn-agregar-carrito:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* ==========================================================================
+   6. CARRITO MODAL (PANEL DESLIZABLE)
+   ========================================================================== */
+.carrito-modal {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto por defecto a la derecha */
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--color-blanco);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 200;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Clase que inyectará JavaScript para abrir el carrito */
+.carrito-modal.abierto {
+    right: 0;
+}
+
+.carrito-contenido {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.carrito-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--color-claro);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-cerrar {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.items-carrito {
+    flex: 1;
+    overflow-y: auto; /* Permite scroll si hay muchos productos */
+    padding: 20px;
+}
+
+.carrito-vacio {
+    text-align: center;
+    color: #9ca3af;
+    margin-top: 40px;
+}
+
+/* Diseño de cada item dentro del carrito */
+.item-en-carrito {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--color-claro);
+}
+
+.item-en-carrito img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-info h4 {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.btn-eliminar-item {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.carrito-footer {
+    padding: 20px;
+    border-top: 1px solid var(--color-claro);
+    background-color: #fafafa;
+}
+
+.total-contenedor {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn-pagar {
+    width: 100%;
+    background-color: var(--color-exito);
+    color: var(--color-blanco);
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn-pagar:hover {
+    background-color: #059669;
+}
+
+/* ==========================================================================
+   7. PIE DE PÁGINA Y MEDIA QUERIES (PANTALLAS GRANDES)
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-top: 40px;
+}
+
+/* Cuando la pantalla sea más grande que un celular (Computadoras/Tablets) */
+@media (min-width: 768px) {
+    .contenedor-principal {
+        grid-template-columns: 280px 1fr; /* Filtros a la izquierda, productos a la derecha */
+    }
+}
