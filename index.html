@@ -3,120 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MegaModa App Marketplace</title>
-    <link rel="stylesheet" href="style.css">
+    <title>VÉREUX Atelier | Tienda Online de Mesas de Resina de Lujo</title>
+    <!-- Fuentes de Alta Gama -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="navbar-app">
-        <div class="navbar-app-contenedor">
-            <div class="buscador-app-wrapper">
-                <svg class="icono-buscar" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a9a9a9" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="input-busqueda" placeholder="Buscar na MegaModa...">
-                <button id="btn-ejecutar-busqueda" class="btn-camara-simulada">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ee4d2d" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+    <!-- NAV: Barra de Navegación E-commerce de Lujo -->
+    <header class="navbar" id="mainHeader">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">VÉREUX</a>
+            
+            <nav class="nav-menu">
+                <a href="#galeria-esencial" class="nav-link">Línea Esencial</a>
+                <a href="#galeria-autor" class="nav-link">Piezas de Autor</a>
+                <a href="#diseno-medida" class="nav-link">A Medida</a>
+            </nav>
+
+            <!-- Zona de Carrito de Compras -->
+            <div class="cart-wrapper">
+                <button class="cart-toggle-btn" aria-label="Ver carrito">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-counter">0</span>
                 </button>
-            </div>
-            <div class="modulo-carrito-app" id="boton-ver-carrito">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                <span id="badge-contador-carrito">0</span>
             </div>
         </div>
     </header>
 
-    <div class="banner-campaña-app">
-        <div class="banner-contenido">
-            <span class="badge-tag">6.6 Flash</span>
-            <h2>FALTAN 5 DÍAS</h2>
-            <p>Envío gratis mundial sin mínimo de compra</p>
+    <!-- HERO: Portada Cinematográfica con Video ASMR -->
+    <section class="hero">
+        <div class="video-wrapper">
+            <!-- NOTA: Reemplaza "video-taller.mp4" con el enlace o archivo de tu video de 21 segundos de Pinterest -->
+            <video autoplay loop muted playsinline id="heroVideo" class="bg-video">
+                <source src="video-taller.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
         </div>
-    </div>
 
-    <section class="menu-accesos-rapidos">
-        <button class="acceso-item control-filtro-btn activo" data-valor="todas">
-            <div class="circulo-icono ic-todo">🌐</div>
-            <span>Catálogo</span>
-        </button>
-        <button class="acceso-item control-filtro-btn" data-valor="clothes">
-            <div class="circulo-icono ic-ropa">👕</div>
-            <span>Ropa</span>
-        </button>
-        <button class="acceso-item control-filtro-btn" data-valor="shoes">
-            <div class="circulo-icono ic-zapatos">👟</div>
-            <span>Calzado</span>
-        </button>
-        <button class="acceso-item control-filtro-btn" data-valor="electronics">
-            <div class="circulo-icono ic-cupon">🎟️</div>
-            <span>Cupones</span>
+        <div class="hero-content">
+            <p class="hero-subtitle">Mobiliario de Alta Costura</p>
+            <h1 class="hero-title">El Arte de la Resina en su Máxima Expresión</h1>
+            <a href="#catalogo-productos" class="btn-primary">Explorar Boutique</a>
+        </div>
+
+        <!-- Botón para activar el sonido real del taller -->
+        <button class="audio-toggle" id="audioBtn">
+            <span class="audio-icon">🔇</span>
+            <span class="audio-text">Escuchar el taller (ASMR)</span>
         </button>
     </section>
 
-    <main class="contenedor-app-feed">
+    <!-- MAIN: Contenedor Principal de la Tienda -->
+    <main id="catalogo-productos" class="store-container">
         
-        <div class="barra-filtros-compacta">
-            <div class="filtro-precio-mini">
-                <span>Máx: <strong id="etiqueta-precio-max">$300</strong></span>
-                <input type="range" id="slider-rango-price" min="10" max="300" value="300" style="display:none;">
-                <input type="range" id="slider-rango-precio" min="10" max="300" value="300">
-            </div>
-            <select id="control-ordenamiento" class="select-app-filtro">
-                <option value="relevancia">Destacados</option>
-                <option value="ascendente">Menor Precio</option>
-                <option value="descendente">Mayor Precio</option>
-            </select>
-        </div>
+        <header class="section-intro">
+            <h2>Colecciones Exclusivas</h2>
+            <p>Piezas de diseño numeradas con envío asegurado y pasarela de pago global instantánea.</p>
+        </header>
 
-        <p id="contador-resultados-productos" class="contador-feed-app">Cargando ofertas del día...</p>
-
-        <div class="rejilla-dinamica-productos" id="contenedor-grid-productos">
+        <!-- CATEGORÍA 1: MESAS DE RESINA SENCILLAS (Hasta $100) -->
+        <section id="galeria-esencial" class="product-section">
+            <div class="category-info">
+                <h3>Línea Esencial: Pureza Cromática</h3>
+                <p>Minimalismo absoluto. Bloques homogéneos de color eterno y combinaciones translúcidas diseñadas para capturar la luz ambiental.</p>
             </div>
+
+            <div class="product-grid">
+                
+                <!-- Producto 1: Color Entero -->
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <!-- NOTA: Pon aquí una imagen de una mesa pequeña o de centro de resina de un solo color sólido (ej. Negro Ópalo o Blanco Cuarzo) con fondo minimalista de estudio. -->
+                        <img src="ruta-de-tu-foto-mesa-monocromatica.jpg" alt="Mesa de Resina Línea Ópalo">
+                    </div>
+                    <div class="product-details">
+                        <h4>Mesa de Centro "Ópalo Absoluto"</h4>
+                        <p class="product-description">Resina pura pulida a mano en un solo tono sólido con acabado espejo de alta resistencia.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$89.00 USD</span>
+                            <button class="btn-add-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Producto 2: Combinación de Colores -->
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <!-- NOTA: Pon aquí una imagen de una mesa de resina que fusione dos o tres colores en degradé o vetas tipo mármol (ej. azul profundo y dorado, o verde esmeralda). -->
+                        <img src="ruta-de-tu-foto-mesa-bicolor.jpg" alt="Mesa de Resina Línea Aurora">
+                    </div>
+                    <div class="product-details">
+                        <h4>Mesa Auxiliar "Aurora Nebulosa"</h4>
+                        <p class="product-description">Fusión orgánica de pigmentos metálicos y resina traslúcida simulando polvo cósmico.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$99.00 USD</span>
+                            <button class="btn-add-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CATEGORÍA 2: MESAS DE AUTOR (Madera, Naturaleza Muerta y Objetos) -->
+        <section id="galeria-autor" class="product-section">
+            <div class="category-info">
+                <h3>Línea de Autor: Elementos Preservados</h3>
+                <p>Obras de arte donde la resina actúa como un cristal del tiempo, encapsulando maderas centenarias, naturaleza muerta seleccionada y colecciones temáticas.</p>
+            </div>
+
+            <div class="product-grid">
+
+                <!-- Producto 3: Madera y Resina (Río) -->
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <!-- NOTA: Pon aquí una imagen de una mesa estilo "River Table" clásica de lujo (dos tablones de madera noble con un río de resina azul o transparente en el medio). -->
+                        <img src="ruta-de-tu-foto-mesa-rio.jpg" alt="Mesa Río de Madera y Resina">
+                    </div>
+                    <div class="product-details">
+                        <h4>Mesa de Comedor "Río de Ébano"</h4>
+                        <p class="product-description">Madera de nogal recuperada unida por un canal fluido de resina cristalina de alta densidad.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$450.00 USD</span>
+                            <button class="btn-add-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Producto 4: Naturaleza Muerta o Flores Encapsuladas -->
+                <article class="product-card">
+                    <div class="product-image-container">
+                        <!-- NOTA: Pon aquí una imagen de primer plano de una mesa de resina completamente transparente que tenga flores botánicas secas, hojas o elementos naturales perfectamente flotando en su interior. -->
+                        <img src="ruta-de-tu-foto-mesa-botanica.jpg" alt="Mesa Botánica Encapsulada">
+                    </div>
+                    <div class="product-details">
+                        <h4>Mesa de Té "Jardín de Invierno"</h4>
+                        <p class="product-description">Naturaleza muerta, helechos y flores silvestres preservadas en resina 100% transparente libre de burbujas.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$580.00 USD</span>
+                            <button class="btn-add-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+        <!-- CATEGORÍA 3: DISEÑOS ESPECÍFICOS Y EXCLUSIVOS A PETICIÓN (ALTA GAMA) -->
+        <section id="diseno-medida" class="product-section custom-atelier-section">
+            <div class="category-info text-center">
+                <h3>Atelier VÉREUX: Diseños a Petición del Cliente</h3>
+                <p>¿Tiene una visión en mente? Creamos mesas personalizadas combinando resinas traslúcidas con colecciones de objetos específicos, maderas exóticas o reliquias personales. Usted sueña el diseño, nosotros lo inmortalizamos.</p>
+            </div>
+
+            <div class="custom-order-container">
+                <div class="custom-order-image">
+                    <!-- NOTA: Pon aquí una foto que inspire exclusividad, por ejemplo, un plano técnico o un artesano vertiendo resina transparente sobre una mesa con elementos muy personalizados de fondo. -->
+                    <img src="ruta-de-tu-foto-pedido-encargo.jpg" alt="Diseño de Mesas a Medida">
+                </div>
+                
+                <div class="custom-order-info">
+                    <h4>Su Pieza Única de Autor</h4>
+                    <p class="price-range-indicator">Proyectos desde $1,200.00 USD (Cotización personalizada)</p>
+                    <p class="custom-benefits">✓ Elección de madera noble (Nogal, Olivo, Ébano).<br>✓ Encapsulado de colecciones privadas u objetos temáticos.<br>✓ Selección de pigmentación exacta y nivel de brillo.</p>
+                    
+                    <!-- Botón para abrir el formulario de encargo -->
+                    <a href="#formulario-reserva" class="btn-secondary">Solicitar Consulta Privada</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE PAGOS EN LÍNEA Y SEGURIDAD -->
+        <section class="checkout-trust-section">
+            <div class="trust-content">
+                <h3>Pasarela de Pago Global y Segura</h3>
+                <p>Para su comodidad, procesamos pagos instantáneos nacionales e internacionales de forma encriptada.</p>
+                
+                <div class="payment-methods-grid">
+                    <!-- NOTA: Aquí puedes enlazar los logos pequeños de los métodos de pago. He preparado los contenedores para PicPay y Tarjetas. -->
+                    <div class="payment-badge">
+                        <img src="logo-picpay.png" alt="Pago Seguro con PicPay">
+                        <span>PicPay Instantáneo</span>
+                    </div>
+                    <div class="payment-badge">
+                        <img src="logo-cards.png" alt="Tarjetas de Crédito Visa y Mastercard">
+                        <span>Tarjetas de Crédito</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <div class="modal-carrito-deslizable" id="capa-modal-carrito">
-        <div class="panel-carrito-contenido">
-            <div class="cabecera-carrito">
-                <h3>Bolsa de Compras</h3>
-                <button id="btn-colapsar-carrito" class="btn-cerrar-X">&times;</button>
-            </div>
-            <div class="cuerpo-items-carrito" id="lista-articulos-carrito">
-                <div class="notificacion-carrito-vacio" id="mensaje-carrito-vacio">
-                    <p>Tu bolsa está vacía.</p>
+    <!-- FOOTER: Pie de Página de la Tienda de Lujo -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 VÉREUX Atelier. Todos los derechos reservados.</p>
+            <p class="footer-legal">Mobiliario de lujo numerado con certificado de autenticidad.</p>
+        </div>
+    </footer>
+
+
+    <!-- ==========================================================================
+       VISTA DETALLADA / LIGHTBOX (VENTANA EMERGENTE DE OFERTA)
+       Este bloque estructural se activará para mostrar la foto gigante y los detalles.
+       ========================================================================== -->
+    <div id="product-detail-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-wrapper">
+            <!-- Botón elegante para cerrar la ventana -->
+            <button class="modal-close-btn" aria-label="Cerrar ventana">&times;</button>
+            
+            <div class="modal-grid">
+                <!-- Lado Izquierdo: Imagen en Alta Resolución -->
+                <div class="modal-image-zoom">
+                    <!-- NOTA: Esta imagen cambiará dinámicamente mostrando la foto en grande del producto que el usuario toque. -->
+                    <img src="ruta-de-tu-foto-grande-por-defecto.jpg" id="modalTargetImg" alt="Vista ampliada de alta calidad">
                 </div>
-            </div>
-            <div class="pie-checkout-carrito">
-                <div class="resumen-financiero-linea total-destacado">
-                    <span>Total:</span>
-                    <span id="txt-total-pago">$0.00</span>
+                
+                <!-- Lado Derecho: Detalles de la Oferta -->
+                <div class="modal-info-extended">
+                    <span class="modal-tag-exclusivo">Pieza de Edición Limitada</span>
+                    <h3 id="modalProductTitle">Nombre del Producto</h3>
+                    <p class="modal-price" id="modalProductPrice">$0.00 USD</p>
+                    
+                    <div class="modal-description-block">
+                        <h5>Especificaciones de Lujo:</h5>
+                        <p id="modalProductDescription">Detalles finos del producto...</p>
+                        <ul class="luxury-specs-list">
+                            <li>Resina Epóxica Premium con Filtro UV (Nunca se pone amarilla).</li>
+                            <li>Acabado de pulido espejo de alta resistencia a rayaduras.</li>
+                            <li>Soportes estructurales de diseño minimalista incluidos.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Métodos de pago aceptados directos en la oferta -->
+                    <div class="modal-payment-notice">
+                        <p>🔒 Pago seguro procesado vía <strong>Paypal</strong> o Tarjeta de Crédito.</p>
+                    </div>
+
+                    <button class="btn-primary btn-block">Proceder a la Compra</button>
                 </div>
-                <button id="btn-ejecutar-checkout" class="btn-checkout-app">Proceder al Pago Seguro</button>
             </div>
         </div>
     </div>
 
-    <nav class="barra-inferior-app">
-        <div class="tab-item activo">
-            <span class="tab-icono">🏠</span>
-            <span class="tab-texto">Início</span>
-        </div>
-        <div class="tab-item">
-            <span class="tab-icono">🛍️</span>
-            <span class="tab-texto">Oficiais</span>
-        </div>
-        <div class="tab-item">
-            <span class="tab-icono">🎥</span>
-            <span class="tab-texto">Live</span>
-        </div>
-        <div class="tab-item contenedor-notif">
-            <span class="tab-icono">🔔</span>
-            <span class="tab-texto">Notificações</span>
-            <span class="badge-notif">10</span>
-        </div>
-        <div class="tab-item">
-            <span class="tab-icono">👤</span>
-            <span class="tab-texto">Eu</span>
-        </div>
-    </nav>
-
-    <script src="script.js"></script>
 </body>
 </html>
