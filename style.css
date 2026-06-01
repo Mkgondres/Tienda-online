@@ -1,615 +1,370 @@
 /* ==========================================================================
-   1. VARIABLES DE SISTEMA Y CONFIGURACIÓN BASE (Estilo Premium)
+   CONFIGURACIÓN GENERAL ESTILO APP NATIVA
    ========================================================================== */
 :root {
-    --fondo-tienda: #f8f9fa;          /* Gris ultra claro de fondo general */
-    --blanco-puro: #ffffff;
-    --texto-principal: #1a1a1a;       /* Negro suavizado para lectura descansada */
-    --texto-secundario: #64748b;     /* Gris slate para descripciones y etiquetas */
-    --color-marca: #0f172a;          /* Azul marino profundo para la identidad */
-    --color-marca-acentos: #2563eb;   /* Azul eléctrico para interactividad */
-    --color-esmeralda: #059669;      /* Verde comercial para precios y checkout */
-    --fuente-shopping: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --sombra-premium: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
-    --sombra-flotante: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    --curva-borde: 8px;              /* Bordes sutiles estilo interfaz de software moderno */
-    --transicion-suave: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --shopee-orange: #ee4d2d;
+    --shopee-red-gradient: linear-gradient(135deg, #f05d42, #ee4d2d);
+    --bg-app: #f5f5f5;
+    --texto-oscuro: #222222;
+    --texto-gris: #888888;
+    --blanco: #ffffff;
+    --curva-card: 6px;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent; /* Optimización táctil para móviles */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    font-family: var(--fuente-shopping);
-    background-color: var(--fondo-tienda);
-    color: var(--texto-principal);
-    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-app);
+    color: var(--texto-oscuro);
+    padding-bottom: 70px; /* Espacio para que la barra inferior no tape el contenido */
 }
 
-/* ==========================================================================
-   2. BARRA DE NAVEGACIÓN SUPERIOR (Sticky Navbar)
-   ========================================================================== */
-.navbar-fija {
+/* BARRA SUPERIOR VIBRANTE */
+.navbar-app {
+    background: var(--shopee-red-gradient);
     position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--color-marca);
-    color: var(--blanco-puro);
-    z-index: 1000;
-    box-shadow: var(--sombra-premium);
+    z-index: 900;
+    padding: 8px 12px;
 }
 
-.navbar-contenedor {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 12px 16px;
+.navbar-app-contenedor {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
 }
 
-.marca-logo h2 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    cursor: pointer;
-}
-
-.marca-logo h2 span {
-    color: var(--color-marca-acentos);
-}
-
-/* Buscador Central Dinámico */
-.barra-busqueda-global {
+.buscador-app-wrapper {
     flex: 1;
-    max-width: 600px;
+    background-color: var(--blanco);
+    border-radius: 4px;
     display: flex;
-    background-color: var(--blanco-puro);
-    border-radius: 6px;
-    overflow: hidden;
-    transition: var(--transicion-suave);
+    align-items: center;
+    padding: 6px 10px;
+    gap: 8px;
 }
 
-.barra-busqueda-global:focus-within {
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
-}
-
-.barra-busqueda-global input {
+.buscador-app-wrapper input {
     width: 100%;
     border: none;
     outline: none;
-    padding: 10px 14px;
     font-size: 0.9rem;
-    color: var(--texto-principal);
 }
 
-.barra-busqueda-global button {
-    background-color: #f3f4f6;
+.btn-camara-simulada {
+    background: none;
     border: none;
-    padding: 0 16px;
     cursor: pointer;
-    color: var(--texto-secundario);
-    transition: var(--transicion-suave);
-}
-
-.barra-busqueda-global button:hover {
-    background-color: #e5e7eb;
-    color: var(--texto-principal);
-}
-
-/* Módulo del Carrito */
-.modulo-usuario {
     display: flex;
     align-items: center;
 }
 
-.disparador-carrito {
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 50%;
-    transition: var(--transicion-suave);
-}
-
-.disparador-carrito:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.icono-carrito-wrapper {
+.modulo-carrito-app {
     position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.icono-carrito-wrapper svg {
-    stroke: var(--blanco-puro);
+    cursor: pointer;
 }
 
 #badge-contador-carrito {
     position: absolute;
     top: -6px;
     right: -8px;
-    background-color: var(--color-marca-acentos);
-    color: var(--blanco-puro);
+    background-color: var(--blanco);
+    color: var(--shopee-orange);
     font-size: 0.7rem;
-    font-weight: 700;
-    min-width: 18px;
-    height: 18px;
+    font-weight: bold;
     border-radius: 10px;
+    padding: 1px 5px;
+    border: 1px solid var(--shopee-orange);
+}
+
+/* BANNER PROMOCIONAL LLAMATIVO */
+.banner-campaña-app {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800') center/cover;
+    color: var(--blanco);
+    padding: 20px 16px;
+    text-align: left;
+}
+
+.banner-contenido h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.badge-tag {
+    background-color: var(--shopee-orange);
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+/* ICONOS CIRCULARES DE MENÚ (CATEGORÍAS DE APP) */
+.menu-accesos-rapidos {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--blanco);
+    padding: 14px 8px;
+    margin-bottom: 8px;
+}
+
+.acceso-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    width: 70px;
+}
+
+.circulo-icono {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #f0fdf4;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 4px;
-    border: 2px solid var(--color-marca);
+    font-size: 1.3rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
 }
 
-/* ==========================================================================
-   3. MAQUETACIÓN ESTRUCTURAL MAESTRA (Layout Principal)
-   ========================================================================== */
-.bloque-principal-layout {
-    max-width: 1400px;
-    margin: 24px auto;
-    padding: 0 16px;
-    display: grid;
-    grid-template-columns: 1fr; /* Columna única por defecto en celular */
-    gap: 24px;
+.acceso-item.activo .circulo-icono {
+    background-color: #ffedd5;
+    border: 2px solid var(--shopee-orange);
 }
 
-/* ==========================================================================
-   4. PANEL DE FILTROS LATERAL (Sidebar)
-   ========================================================================== */
-.sidebar-filtros {
-    background-color: var(--blanco-puro);
-    border-radius: var(--curva-borde);
-    padding: 20px;
-    box-shadow: var(--sombra-premium);
-    height: fit-content;
+.acceso-item span {
+    font-size: 0.75rem;
+    color: #444;
+    text-align: center;
+    white-space: nowrap;
 }
 
-.sidebar-header h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e2e8f0;
+/* CONTENEDOR Y FILTROS COMPACTOS */
+.contenedor-app-feed {
+    padding: 0 8px;
 }
 
-.filtro-grupo {
-    margin-bottom: 24px;
-}
-
-.filtro-grupo h4 {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--texto-secundario);
-    margin-bottom: 12px;
-}
-
-.filtro-opciones-lista {
+.barra-filtros-compacta {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--blanco);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.filtro-precio-mini {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    flex: 1;
+    max-width: 160px;
+}
+
+.filtro-precio-mini input {
+    accent-color: var(--shopee-orange);
+}
+
+.select-app-filtro {
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background-color: var(--blanco);
+}
+
+.contador-feed-app {
+    font-size: 0.75rem;
+    color: var(--texto-gris);
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
+/* REJILLA DE 2 COLUMNAS PARA SMARTPHONES (EL GRAN CAMBIO) */
+.rejilla-dinamica-productos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas exactas */
     gap: 8px;
 }
 
-/* Estilo avanzado para los botones de control de la API */
-.control-filtro-btn {
-    background-color: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    color: var(--texto-principal);
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transicion-suave);
-}
-
-.control-filtro-btn:hover {
-    background-color: #e2e8f0;
-}
-
-.control-filtro-btn.activo {
-    background-color: var(--color-marca);
-    border-color: var(--color-marca);
-    color: var(--blanco-puro);
-}
-
-/* Controladores de Rango de Precio y Selector */
-.slider-precio-contenedor input[type="range"] {
-    width: 100%;
-    accent-color: var(--color-marca-acentos);
-    margin-bottom: 8px;
-    cursor: pointer;
-}
-
-.visualizador-precios {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: var(--texto-secundario);
-}
-
-.visualizador-precios strong {
-    color: var(--texto-principal);
-}
-
-.select-personalizado-wrapper select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    background-color: var(--blanco-puro);
-    font-size: 0.9rem;
-    color: var(--texto-principal);
-    outline: none;
-    cursor: pointer;
-    transition: var(--transicion-suave);
-}
-
-.select-personalizado-wrapper select:focus {
-    border-color: var(--color-marca-acentos);
-}
-/* ==========================================================================
-   5. VITRINA Y REJILLA DE PRODUCTOS (Grid Adaptativo)
-   ========================================================================== */
-.seccion-vitrina {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.barra-estado-vitrina {
-    background-color: var(--blanco-puro);
-    padding: 16px;
-    border-radius: var(--curva-borde);
-    box-shadow: var(--sombra-premium);
-}
-
-.barra-estado-vitrina h1 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.barra-estado-vitrina p {
-    font-size: 0.85rem;
-    color: var(--texto-secundario);
-}
-
-/* Rejilla inteligente: cambia de 1 a 4 columnas según el tamaño de pantalla */
-.rejilla-dinamica-productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-}
-
-/* ==========================================================================
-   6. TARJETAS DE PRODUCTOS (Estilo Corporativo / Amazon)
-   ========================================================================== */
+/* TARJETAS DE PRODUCTO COMPACTAS ESTILO SHOPEE */
 .tarjeta-producto {
-    background-color: var(--blanco-puro);
-    border-radius: var(--curva-borde);
+    background-color: var(--blanco);
+    border-radius: var(--curva-card);
     overflow: hidden;
-    box-shadow: var(--sombra-premium);
     display: flex;
     flex-direction: column;
-    transition: var(--transicion-suave);
-    border: 1px solid #f1f5f9;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    position: relative;
 }
 
-.tarjeta-producto:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--sombra-flotante);
+/* Inyectamos la etiqueta "Indicado" por CSS puro */
+.tarjeta-producto::before {
+    content: "Indicado";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background-color: var(--shopee-orange);
+    color: var(--blanco);
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 1px 4px;
+    border-radius: 2px;
+    z-index: 10;
 }
 
-/* Contenedor de Imagen con Fondo Limpio */
 .imagen-producto-contenedor {
     width: 100%;
-    height: 220px;
-    padding: 20px;
-    background-color: #ffffff;
+    height: 160px;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    border-bottom: 1px solid #f1f5f9;
+    padding: 8px;
 }
 
 .imagen-producto-contenedor img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Evita que la ropa se deforme */
-    transition: var(--transicion-suave);
+    object-fit: contain;
 }
 
-.tarjeta-producto:hover .imagen-producto-contenedor img {
-    transform: scale(1.03);
-}
-
-/* Información Comercial del Producto */
 .info-producto-contenedor {
-    padding: 16px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
+    gap: 6px;
     flex-grow: 1;
 }
 
 .info-producto-contenedor h3 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--texto-principal);
-    margin-bottom: 8px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.2;
+    height: 2.4rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Corta el texto a 2 líneas si el título de la API es muy largo */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 2.6rem;
 }
 
 .precio-producto-tag {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-esmeralda);
-    margin-bottom: 12px;
+    color: var(--shopee-orange);
+    font-size: 1.05rem;
+    font-weight: bold;
 }
 
+/* Reemplazamos el botón gigante por uno compacto integrado estilo feed */
 .btn-agregar-bolsa {
+    background-color: #fff4f2;
+    border: 1px solid var(--shopee-orange);
+    color: var(--shopee-orange);
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 6px;
+    border-radius: 4px;
     width: 100%;
-    background-color: #fef08a; /* Amarillo Amazon suave */
-    border: 1px solid #fef08a;
-    color: #1e293b;
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     margin-top: auto;
-    transition: var(--transicion-suave);
 }
 
-.btn-agregar-bolsa:hover {
-    background-color: #fde047;
-    border-color: #eab308;
+.btn-agregar-bolsa svg {
+    display: none; /* Quitamos el icono pesado para móvil */
 }
 
-/* ==========================================================================
-   7. PANEL DEL CARRITO DESLIZABLE (Modal lateral)
-   ========================================================================== */
+/* BARRA DE APP FIJA ABAJO */
+.barra-inferior-app {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: var(--blanco);
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 999;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    cursor: pointer;
+    flex: 1;
+}
+
+.tab-item.activo {
+    color: var(--shopee-orange);
+}
+
+.tab-icono {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.tab-text, .tab-texto {
+    font-size: 0.65rem;
+}
+
+.contenedor-notif {
+    position: relative;
+}
+
+.badge-notif {
+    position: absolute;
+    top: 2px;
+    right: 14px;
+    background-color: var(--shopee-orange);
+    color: var(--blanco);
+    font-size: 0.6rem;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 1px 4px;
+}
+
+/* AJUSTES PARA EL CARRITO MODAL COMPACTO */
 .modal-carrito-deslizable {
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
-    z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
+    top: 0; right: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; z-index: 2000;
     transition: opacity 0.3s ease;
 }
-
-/* Estado Activo que se activa mediante JavaScript */
-.modal-carrito-deslizable.abierto {
-    opacity: 1;
-    pointer-events: auto;
-}
-
+.modal-carrito-deslizable.abierto { opacity: 1; pointer-events: auto; }
 .panel-carrito-contenido {
-    position: absolute;
-    top: 0;
-    right: -100%; /* Escondido por defecto a la derecha */
-    width: 100%;
-    max-width: 420px;
-    height: 100%;
-    background-color: var(--blanco-puro);
-    box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
-    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute; top: 0; right: -100%; width: 85%; max-width: 340px; height: 100%;
+    background-color: var(--blanco); display: flex; flex-direction: column;
+    transition: right 0.3s ease;
 }
+.modal-carrito-deslizable.abierto .panel-carrito-contenido { right: 0; }
+.cabecera-carrito { padding: 16px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+.cuerpo-items-carrito { flex: 1; overflow-y: auto; padding: 16px; }
+.btn-checkout-app { background: var(--shopee-red-gradient); border: none; color: white; width: 100%; padding: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; }
 
-.modal-carrito-deslizable.abierto .panel-carrito-contenido {
-    right: 0; /* Se desliza hacia adentro */
-}
-
-.cabecera-carrito {
-    padding: 20px;
-    border-bottom: 1px solid #e2e8f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.cabecera-carrito h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.btn-cerrar-X {
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: var(--texto-secundario);
-    cursor: pointer;
-    transition: var(--transicion-suave);
-}
-
-.btn-cerrar-X:hover {
-    color: var(--texto-principal);
-}
-
-/* Contenido interno de la Bolsa */
-.cuerpo-items-carrito {
-    flex: 1;
-    overflow-y: auto; /* Scroll vertical si hay mucha ropa agregada */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.notificacion-carrito-vacio {
-    text-align: center;
-    padding: 40px 0;
-    color: var(--texto-secundario);
-}
-
-.notificacion-carrito-vacio p {
-    margin-top: 12px;
-    font-size: 0.9rem;
-}
-
-/* Tarjeta de artículo dentro de la bolsa */
-.item-bolsa-row {
-    display: flex;
-    gap: 12px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.item-bolsa-row img {
-    width: 70px;
-    height: 70px;
-    object-fit: contain;
-    background-color: #fff;
-    border-radius: 4px;
-    border: 1px solid #e2e8f0;
-    padding: 4px;
-}
-
-.item-bolsa-detalles {
-    flex: 1;
-}
-
-.item-bolsa-detalles h4 {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--texto-principal);
-    margin-bottom: 4px;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.item-bolsa-detalles .precio-multiplicador {
-    font-size: 0.85rem;
-    color: var(--texto-secundario);
-    margin-bottom: 6px;
-}
-
-.btn-remover-item {
-    background: none;
-    border: none;
-    color: #ef4444;
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 0;
-}
-
-.btn-remover-item:hover {
-    text-decoration: underline;
-}
-
-/* Sección Inferior de Cierre Financiero */
-.pie-checkout-carrito {
-    background-color: #f8fafc;
-    padding: 20px;
-    border-top: 1px solid #e2e8f0;
-}
-
-.resumen-financiero-linea {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    color: var(--texto-secundario);
-    margin-bottom: 10px;
-}
-
-.promocion-envio .badge-envio-gratis {
-    color: var(--color-esmeralda);
-    font-weight: 600;
-}
-
-.divisor-linea-comercial {
-    height: 1px;
-    background-color: #cbd5e1;
-    margin: 12px 0;
-}
-
-.total-destacado {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--texto-principal);
-    margin-bottom: 16px;
-}
-
-.total-destacado #txt-total-pago {
-    color: var(--color-esmeralda);
-}
-
-.btn-checkout-comercial-pro {
-    width: 100%;
-    background-color: #eab308; /* Botón dorado clásico de checkout */
-    border: 1px solid #ca8a04;
-    color: #ffffff;
-    padding: 12px;
-    border-radius: var(--curva-borde);
-    font-size: 0.95rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: var(--transicion-suave);
-    box-shadow: var(--sombra-premium);
-}
-
-.btn-checkout-comercial-pro:hover {
-    background-color: #ca8a04;
-}
-
-/* ==========================================================================
-   8. PIE DE PÁGINA CORPORATIVO (Footer)
-   ========================================================================== */
-.footer-institucional {
-    background-color: var(--color-marca);
-    color: #94a3b8;
-    padding: 30px 16px;
-    text-align: center;
-    margin-top: 40px;
-}
-
-.footer-contenido-wrapper p {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-    color: var(--blanco-puro);
-}
-
-.footer-contenido-wrapper small {
-    font-size: 0.75rem;
-}
-
-/* ==========================================================================
-   9. MEDIA QUERIES (Adaptación para Computadoras y Tablets grandes)
-   ========================================================================== */
+/* OPTIMIZACIÓN COMPUTADORAS (Por si abren tu link en PC) */
 @media (min-width: 768px) {
-    .bloque-principal-layout {
-        grid-template-columns: 280px 1fr; /* Divide la pantalla en Panel Izquierdo y Vitrina Derecha */
-        align-items: start;
-    }
-    
-    .barra-estado-vitrina h1 {
-        font-size: 1.5rem;
-    }
+    .rejilla-dinamica-productos { grid-template-columns: repeat(4, 1fr); }
+    body { max-width: 450px; margin: 0 auto; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+    .navbar-app, .barra-inferior-app { max-width: 450px; left: 50%; transform: translateX(-50%); }
 }
