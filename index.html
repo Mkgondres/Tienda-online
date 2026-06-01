@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiStore | Tu Tienda Online Freelance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <h1>Multi<span>Store</span></h1>
+        </div>
+        
+        <div class="contenedor-carrito-icono" id="abrir-carrito">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="=M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span id="contador-carrito">0</span>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        
+        <aside class="panel-filtros">
+            <h2>Filtros</h2>
+            
+            <div class="grupo-filtro">
+                <h3>Categorías</h3>
+                <div id="contenedor-botones-categoria">
+                    <button class="btn-categoria activo" data-categoria="todos">Todos los productos</button>
+                </div>
+            </div>
+
+            <div class="grupo-filtro">
+                <h3>Ordenar por Precio</h3>
+                <select id="ordenar-precio">
+                    <option value="defecto">Seleccionar...</option>
+                    <option value="barato">Más baratos primero</option>
+                    <option value="caro">Más caros primero</option>
+                </select>
+            </div>
+            
+            <div class="grupo-filtro">
+                <h3>Precio Máximo: $<span id="valor-precio-max">1000</span></h3>
+                <input type="range" id="rango-precio" min="0" max="1000" value="1000">
+            </div>
+        </aside>
+
+        <section class="seccion-productos">
+            <h2 id="titulo-categoria">Todos los productos</h2>
+            
+            <div class="cuadrícula-productos" id="contenedor-productos">
+                </div>
+        </section>
+
+    </main>
+
+    <div class="carrito-modal" id="carrito-modal">
+        <div class="carrito-contenido">
+            <div class="carrito-header">
+                <h2>Tu Carrito</h2>
+                <button id="cerrar-carrito" class="btn-cerrar">&times;</button>
+            </div>
+
+            <div id="items-carrito" class="items-carrito">
+                <p class="carrito-vacio">Tu carrito está vacío.</p>
+            </div>
+
+            <div class="carrito-footer">
+                <div class="total-contenedor">
+                    <span>Total:</span>
+                    <span id="total-precio">$0.00</span>
+                </div>
+                <button id="btn-pagar" class="btn-pagar">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MultiStore. Desarrollado con fines de Portafolio Freelance.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
