@@ -1,16 +1,14 @@
 /* ============================
    RESINA LUXA – STYLESHEET
-   Primera parte: Estilos base, Navbar, Hero, Catálogo y Productos
    ============================ */
 
-/* ---------- Custom Properties ---------- */
 :root {
     --color-fondo: #0b0a0a;
     --color-fondo-claro: #131313;
     --color-blanco: #f8f5f0;
     --color-dorado: #c9a96e;
     --color-dorado-oscuro: #a6844b;
-    --color-gris: #999;
+    --color-gris: #b3b3b3; /* Mejora de contraste de accesibilidad */
     --color-gris-claro: #222;
     --color-texto: #e3dfd8;
     --color-texto-claro: #b0aca5;
@@ -24,10 +22,7 @@
     --transicion: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ---------- Reset & Base ---------- */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -58,7 +53,6 @@ img {
     display: block;
 }
 
-/* ---------- Tipografía ---------- */
 h1, h2, h3, h4 {
     font-family: var(--fuente-titulos);
     font-weight: 600;
@@ -72,7 +66,6 @@ p {
     margin-bottom: 1.2rem;
 }
 
-/* ---------- Botones ---------- */
 .btn {
     display: inline-block;
     padding: 0.85rem 2.2rem;
@@ -136,7 +129,6 @@ p {
     color: var(--color-dorado);
 }
 
-/* ---------- Overlay genérico ---------- */
 .overlay {
     position: fixed;
     top: 0;
@@ -155,9 +147,6 @@ p {
     visibility: visible;
 }
 
-/* ============================
-   NAVBAR
-   ============================ */
 .navbar {
     position: fixed;
     top: 0;
@@ -243,9 +232,6 @@ p {
     height: 18px;
 }
 
-/* ============================
-   HERO CON VIDEO
-   ============================ */
 .hero {
     position: relative;
     height: 100vh;
@@ -291,9 +277,6 @@ p {
     font-weight: 300;
 }
 
-/* ============================
-   CARRITO LATERAL (sidebar)
-   ============================ */
 .cart-sidebar {
     position: fixed;
     top: 0;
@@ -358,9 +341,6 @@ p {
     font-size: 1.4rem;
 }
 
-/* ============================
-   CATÁLOGO (SECTION)
-   ============================ */
 .catalogo-section {
     padding: 8rem 5% 5rem;
     background: var(--color-fondo);
@@ -396,7 +376,6 @@ p {
     color: var(--color-texto-claro);
 }
 
-/* Grid de productos */
 .catalogo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -405,9 +384,6 @@ p {
     margin: 0 auto;
 }
 
-/* ============================
-   TARJETAS DE PRODUCTO
-   ============================ */
 .producto-card {
     background: var(--color-fondo-claro);
     border: var(--borde-dorado);
@@ -499,18 +475,6 @@ p {
     margin-top: 0.2rem;
 }
 
-/* 
-   ██████████████████████████████████████████████████
-   PRIMERA MITAD DEL CSS TERMINA AQUÍ
-   (La segunda parte incluirá: estilos del checkout, 
-   footer, responsive design y animaciones)
-   ██████████████████████████████████████████████████
-*//* ============================
-   RESINA LUXA – STYLESHEET
-   Segunda parte: Checkout, Footer, Responsive y Ajustes finales
-   ============================ */
-
-/* ---------- CHECKOUT (Modal de pago) ---------- */
 .checkout-modal {
     position: fixed;
     top: 50%;
@@ -603,7 +567,6 @@ p {
     font-size: 1.6rem;
 }
 
-/* Formulario de pago */
 .payment-form fieldset {
     border: none;
     margin-bottom: 1.8rem;
@@ -692,7 +655,6 @@ p {
     margin-bottom: 0.5rem;
 }
 
-/* Animación para el mensaje de éxito */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -704,7 +666,6 @@ p {
     }
 }
 
-/* ---------- FOOTER ---------- */
 .footer {
     background: #070606;
     border-top: var(--borde-dorado);
@@ -753,140 +714,42 @@ p {
     color: var(--color-gris);
 }
 
-/* ============================
-   MEDIA QUERIES (Responsive)
-   ============================ */
-
-/* Tablets grandes y pantallas pequeñas */
 @media (max-width: 1024px) {
-    .hero-title {
-        font-size: 3.5rem;
-    }
-
-    .catalogo-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .cart-sidebar {
-        width: 380px;
-    }
+    .hero-title { font-size: 3.5rem; }
+    .catalogo-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .cart-sidebar { width: 380px; }
 }
 
-/* Tablets verticales y móviles grandes */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 1rem 4%;
-    }
-
-    .logo a {
-        font-size: 1.5rem;
-    }
-
-    .nav-links {
-        gap: 1.5rem;
-    }
-
-    .nav-links a {
-        font-size: 0.8rem;
-        letter-spacing: 0.05rem;
-    }
-
-    .hero {
-        height: 80vh;
-        min-height: 500px;
-    }
-
-    .hero-title {
-        font-size: 2.8rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 2.4rem;
-    }
-
-    .catalogo-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    .producto-card {
-        max-width: 100%;
-    }
-
-    .checkout-modal {
-        width: 95%;
-        padding: 1.5rem;
-    }
-
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
+    .navbar { padding: 1rem 4%; }
+    .logo a { font-size: 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 0.05rem; }
+    .hero { height: 80vh; min-height: 500px; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .section-title { font-size: 2.4rem; }
+    .catalogo-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+    .producto-card { max-width: 100%; }
+    .checkout-modal { width: 95%; padding: 1.5rem; }
+    .form-row { flex-direction: column; gap: 0; }
 }
 
-/* Móviles pequeños */
 @media (max-width: 480px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 0.8rem 3%;
-    }
-
-    .nav-links {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .hero-title {
-        font-size: 2.2rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .producto-info {
-        padding: 1.5rem 1.2rem;
-    }
-
-    .producto-nombre {
-        font-size: 1.3rem;
-    }
-
-    .precio {
-        font-size: 1.5rem;
-    }
-
-    .cart-sidebar {
-        width: 100%;
-        right: -100%;
-    }
+    .navbar { flex-direction: column; gap: 1rem; padding: 0.8rem 3%; }
+    .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .hero-title { font-size: 2.2rem; }
+    .section-title { font-size: 2rem; }
+    .producto-info { padding: 1.5rem 1.2rem; }
+    .producto-nombre { font-size: 1.3rem; }
+    .precio { font-size: 1.5rem; }
+    .cart-sidebar { width: 100%; right: -100%; }
 }
 
-/* Ajuste para dispositivos con hover (escritorio) */
 @media (hover: hover) {
-    .producto-card:hover .producto-img img {
-        transform: scale(1.05);
-    }
+    .producto-card:hover .producto-img img { transform: scale(1.05); }
 }
 
-/* Ajustes de scrollbar para el carrito (solo WebKit) */
-.cart-items::-webkit-scrollbar {
-    width: 5px;
-}
-
-.cart-items::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.cart-items::-webkit-scrollbar-thumb {
-    background: var(--color-dorado);
-    border-radius: 2px;
-}
+.cart-items::-webkit-scrollbar { width: 5px; }
+.cart-items::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.cart-items::-webkit-scrollbar-thumb { background: var(--color-dorado); border-radius: 2px; }
