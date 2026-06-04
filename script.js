@@ -1,6 +1,5 @@
 /* ============================
    RESINA LUXA – SCRIPT
-   Primera parte: Carrito, Renderizado y Eventos
    ============================ */
 
 'use strict';
@@ -22,17 +21,23 @@ const checkoutTotalDisplay = document.getElementById('checkout-total-display');
 const paymentForm = document.getElementById('payment-form');
 const paymentSuccess = document.getElementById('payment-success');
 
+const payBtn = document.getElementById('pay-btn');
+const nomeInput = document.getElementById('nome');
+const emailInput = document.getElementById('email');
+const direccionInput = document.getElementById('direccion');
+const paisSelect = document.getElementById('pais');
+const cardNumberInput = document.getElementById('card-number');
+const expiryInput = document.getElementById('expiry');
+const cvvInput = document.getElementById('cvv');
+
 // ---------- ESTADO DEL CARRITO ----------
 let cart = [];
 
 // ---------- FUNCIONES DEL CARRITO ----------
-
-// Guardar carrito en localStorage
 function saveCart() {
     localStorage.setItem('resinaLuxaCart', JSON.stringify(cart));
 }
 
-// Cargar carrito desde localStorage
 function loadCart() {
     const stored = localStorage.getItem('resinaLuxaCart');
     if (stored) {
@@ -40,17 +45,14 @@ function loadCart() {
     }
 }
 
-// Obtener total del carrito
 function getCartTotal() {
     return cart.reduce((total, item) => total + item.precio * item.cantidad, 0);
 }
 
-// Obtener cantidad total de productos
 function getCartCount() {
     return cart.reduce((count, item) => count + item.cantidad, 0);
 }
 
-// Formatear precio en Reales brasileños
 function formatPrice(price) {
     return price.toLocaleString('pt-BR', {
         style: 'currency',
@@ -59,7 +61,7 @@ function formatPrice(price) {
     });
 }
 
-// Renderizar items en el carrito lateral
+// Renderizado optimizado sin agregar eventos dentro del loop (previniendo fugas de memoria)
 function renderCart() {
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="cart-empty">No hay productos en el carrito.</p>';
@@ -80,43 +82,24 @@ function renderCart() {
                 </div>
             </div>
         `).join('');
-
-        // Asignar eventos a los botones de cantidad y eliminar
-        document.querySelectorAll('.cart-item-increase').forEach(btn => {
-            btn.addEventListener('click', () => increaseQuantity(parseInt(btn.dataset.id)));
-        });
-        document.querySelectorAll('.cart-item-decrease').forEach(btn => {
-            btn.addEventListener('click', () => decreaseQuantity(parseInt(btn.dataset.id)));
-        });
-        document.querySelectorAll('.cart-item-remove').forEach(btn => {
-            btn.addEventListener('click', () => removeFromCart(parseInt(btn.dataset.id)));
-        });
     }
 
-    // Actualizar contador y total
     cartCountElement.textContent = getCartCount();
     cartTotalPrice.textContent = formatPrice(getCartTotal());
     saveCart();
 }
 
-// Agregar producto al carrito
 function addToCart(id, nombre, precio) {
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
         existingItem.cantidad += 1;
     } else {
-        cart.push({
-            id: id,
-            nombre: nombre,
-            precio: precio,
-            cantidad: 1
-        });
+        cart.push({ id: id, nombre: nombre, precio: precio, cantidad: 1 });
     }
     renderCart();
-    // Mostrar carrito brevemente al agregar
+    
     if (!cartSidebar.classList.contains('open')) {
         openCart();
-        // Cerrar automáticamente después de 1.5 segundos si el usuario no interactúa
         setTimeout(() => {
             if (cartSidebar.classList.contains('open')) {
                 closeCart();
@@ -125,13 +108,11 @@ function addToCart(id, nombre, precio) {
     }
 }
 
-// Eliminar producto del carrito
 function removeFromCart(id) {
     cart = cart.filter(item => item.id !== id);
     renderCart();
 }
 
-// Aumentar cantidad de un producto
 function increaseQuantity(id) {
     const item = cart.find(item => item.id === id);
     if (item) {
@@ -140,7 +121,6 @@ function increaseQuantity(id) {
     }
 }
 
-// Disminuir cantidad de un producto
 function decreaseQuantity(id) {
     const item = cart.find(item => item.id === id);
     if (item && item.cantidad > 1) {
@@ -151,23 +131,21 @@ function decreaseQuantity(id) {
     }
 }
 
-// Abrir carrito lateral
 function openCart() {
     cartSidebar.classList.add('open');
     cartOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
-// Cerrar carrito lateral
 function closeCart() {
     cartSidebar.classList.remove('open');
     cartOverlay.classList.remove('active');
     document.body.style.overflow = '';
 }
 
-// ---------- EVENT LISTENERS INICIALES ----------
+// ---------- EVENT LISTENERS INICIALES Y DELEGACIÓN ----------
 
-// Delegación de eventos para botones "Agregar al Carrito"
+// Delegación de eventos para el catálogo
 document.querySelector('.catalogo-grid').addEventListener('click', function(e) {
     const btn = e.target.closest('.agregar-carrito');
     if (!btn) return;
@@ -176,7 +154,6 @@ document.querySelector('.catalogo-grid').addEventListener('click', function(e) {
     const nombre = btn.dataset.nombre;
     const precio = parseFloat(btn.dataset.precio);
 
-    // Efecto visual en el botón
     btn.textContent = '✓ Agregado';
     btn.style.background = 'var(--color-dorado)';
     btn.style.color = '#0b0a0a';
@@ -189,7 +166,17 @@ document.querySelector('.catalogo-grid').addEventListener('click', function(e) {
     addToCart(id, nombre, precio);
 });
 
-// Toggle del carrito desde el icono
+// Delegación de eventos para las interacciones dentro del carrito
+cartItemsContainer.addEventListener('click', function(e) {
+    if (e.target.classList.contains('cart-item-increase')) {
+        increaseQuantity(parseInt(e.target.dataset.id));
+    } else if (e.target.classList.contains('cart-item-decrease')) {
+        decreaseQuantity(parseInt(e.target.dataset.id));
+    } else if (e.target.classList.contains('cart-item-remove')) {
+        removeFromCart(parseInt(e.target.dataset.id));
+    }
+});
+
 cartToggle.addEventListener('click', function(e) {
     e.preventDefault();
     if (cartSidebar.classList.contains('open')) {
@@ -199,16 +186,10 @@ cartToggle.addEventListener('click', function(e) {
     }
 });
 
-// Cerrar carrito con botón X
 cartClose.addEventListener('click', closeCart);
-
-// Cerrar carrito al hacer clic en el overlay
 cartOverlay.addEventListener('click', closeCart);
 
-// ---------- BASE PARA CHECKOUT ----------
-// (Se detalla y completa en la segunda parte del JS)
-
-// Renderizar resumen en el modal de checkout
+// ---------- CHECKOUT Y PAGOS ----------
 function renderCheckoutResumen() {
     if (cart.length === 0) return;
 
@@ -221,7 +202,6 @@ function renderCheckoutResumen() {
     checkoutTotalDisplay.textContent = formatPrice(getCartTotal());
 }
 
-// Abrir modal de checkout
 function openCheckout() {
     if (cart.length === 0) {
         alert('Tu carrito está vacío. Agrega mesas antes de proceder al pago.');
@@ -230,11 +210,10 @@ function openCheckout() {
     renderCheckoutResumen();
     checkoutModal.classList.add('active');
     checkoutOverlay.classList.add('active');
-    closeCart(); // Cierra el carrito lateral si estaba abierto
+    closeCart(); 
     document.body.style.overflow = 'hidden';
 }
 
-// Cerrar modal de checkout
 function closeCheckoutModal() {
     checkoutModal.classList.remove('active');
     checkoutOverlay.classList.remove('active');
@@ -243,63 +222,16 @@ function closeCheckoutModal() {
     paymentSuccess.style.display = 'none';
 }
 
-// Eventos de apertura/cierre del checkout
 checkoutBtn.addEventListener('click', openCheckout);
 closeCheckout.addEventListener('click', closeCheckoutModal);
 checkoutOverlay.addEventListener('click', closeCheckoutModal);
 
-// ---------- INICIALIZACIÓN ----------
-document.addEventListener('DOMContentLoaded', function() {
-    loadCart();
-    renderCart();
-});
+// Validaciones
+function isNotEmpty(value) { return value.trim() !== ''; }
+function isValidEmail(email) { const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; return regex.test(email); }
+function isValidCardNumber(number) { const digitsOnly = number.replace(/\s/g, ''); return /^\d{16}$/.test(digitsOnly); }
+function isValidCVV(cvv) { return /^\d{3,4}$/.test(cvv); }
 
-/* 
-   ██████████████████████████████████████████████████
-   PRIMERA MITAD DEL JS TERMINA AQUÍ
-   (La segunda parte contendrá: procesamiento del formulario 
-   de pago, validaciones, simulación de transacción, 
-   limpieza del carrito post-compra y mejoras UX)
-   ██████████████████████████████████████████████████
-*/
-/* ============================
-   RESINA LUXA – SCRIPT
-   Segunda parte: Procesamiento de pago, validación,
-   simulación de transacción, UX avanzada y limpieza
-   ============================ */
-
-'use strict';
-
-// ---------- REFERENCIAS ADICIONALES DEL DOM ----------
-const payBtn = document.getElementById('pay-btn');
-const nomeInput = document.getElementById('nome');
-const emailInput = document.getElementById('email');
-const direccionInput = document.getElementById('direccion');
-const paisSelect = document.getElementById('pais');
-const cardNumberInput = document.getElementById('card-number');
-const expiryInput = document.getElementById('expiry');
-const cvvInput = document.getElementById('cvv');
-
-// ---------- VALIDACIONES DEL FORMULARIO ----------
-
-// Validar campo no vacío
-function isNotEmpty(value) {
-    return value.trim() !== '';
-}
-
-// Validar formato de email básico
-function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
-
-// Validar que el número de tarjeta tenga formato "0000 0000 0000 0000"
-function isValidCardNumber(number) {
-    const digitsOnly = number.replace(/\s/g, '');
-    return /^\d{16}$/.test(digitsOnly);
-}
-
-// Validar formato de vencimiento MM/AA
 function isValidExpiry(expiry) {
     if (!/^\d{2}\/\d{2}$/.test(expiry)) return false;
     const [month, year] = expiry.split('/').map(Number);
@@ -310,12 +242,6 @@ function isValidExpiry(expiry) {
     return true;
 }
 
-// Validar CVV (3 o 4 dígitos)
-function isValidCVV(cvv) {
-    return /^\d{3,4}$/.test(cvv);
-}
-
-// Mostrar error en un campo
 function showFieldError(input, message) {
     const existing = input.parentElement.querySelector('.field-error');
     if (existing) existing.remove();
@@ -327,16 +253,14 @@ function showFieldError(input, message) {
     input.style.borderColor = '#e74c3c';
 }
 
-// Limpiar todos los errores visuales
 function clearAllErrors() {
     document.querySelectorAll('.field-error').forEach(el => el.remove());
-    [nomeInput, emailInput, direccionInput, paisSelect,
-     cardNumberInput, expiryInput, cvvInput].forEach(input => {
+    [nomeInput, emailInput, direccionInput, paisSelect, cardNumberInput, expiryInput, cvvInput].forEach(input => {
         input.style.borderColor = '#333';
     });
 }
 
-// Formatear automáticamente el número de tarjeta con espacios
+// Formateos en vivo
 cardNumberInput.addEventListener('input', function(e) {
     let value = e.target.value.replace(/\s/g, '').replace(/[^\d]/g, '');
     if (value.length > 16) value = value.slice(0, 16);
@@ -344,7 +268,6 @@ cardNumberInput.addEventListener('input', function(e) {
     e.target.value = formatted;
 });
 
-// Formatear vencimiento automáticamente
 expiryInput.addEventListener('input', function(e) {
     let value = e.target.value.replace(/[^\d]/g, '');
     if (value.length > 4) value = value.slice(0, 4);
@@ -354,17 +277,15 @@ expiryInput.addEventListener('input', function(e) {
     e.target.value = value;
 });
 
-// Limitar CVV a 4 dígitos
 cvvInput.addEventListener('input', function(e) {
     e.target.value = e.target.value.replace(/[^\d]/g, '').slice(0, 4);
 });
 
-// ---------- FUNCIÓN PRINCIPAL DE PAGO ----------
+// Envío del pago
 function processPayment(e) {
     e.preventDefault();
     clearAllErrors();
 
-    // Obtener valores
     const nome = nomeInput.value.trim();
     const email = emailInput.value.trim();
     const direccion = direccionInput.value.trim();
@@ -375,63 +296,35 @@ function processPayment(e) {
 
     let isValid = true;
 
-    // Validar campos
-    if (!isNotEmpty(nome)) {
-        showFieldError(nomeInput, 'El nombre es obligatorio.');
-        isValid = false;
-    }
-    if (!isValidEmail(email)) {
-        showFieldError(emailInput, 'Ingresa un correo válido.');
-        isValid = false;
-    }
-    if (!isNotEmpty(direccion)) {
-        showFieldError(direccionInput, 'La dirección es obligatoria.');
-        isValid = false;
-    }
-    if (pais === '') {
-        showFieldError(paisSelect, 'Selecciona un país de entrega.');
-        isValid = false;
-    }
-    if (!isValidCardNumber(cardNumber)) {
-        showFieldError(cardNumberInput, 'Número de tarjeta inválido (16 dígitos).');
-        isValid = false;
-    }
-    if (!isValidExpiry(expiry)) {
-        showFieldError(expiryInput, 'Fecha de vencimiento inválida (MM/AA).');
-        isValid = false;
-    }
-    if (!isValidCVV(cvv)) {
-        showFieldError(cvvInput, 'CVV inválido (3-4 dígitos).');
-        isValid = false;
-    }
+    if (!isNotEmpty(nome)) { showFieldError(nomeInput, 'El nombre es obligatorio.'); isValid = false; }
+    if (!isValidEmail(email)) { showFieldError(emailInput, 'Ingresa un correo válido.'); isValid = false; }
+    if (!isNotEmpty(direccion)) { showFieldError(direccionInput, 'La dirección es obligatoria.'); isValid = false; }
+    if (pais === '') { showFieldError(paisSelect, 'Selecciona un país de entrega.'); isValid = false; }
+    if (!isValidCardNumber(cardNumber)) { showFieldError(cardNumberInput, 'Número de tarjeta inválido (16 dígitos).'); isValid = false; }
+    if (!isValidExpiry(expiry)) { showFieldError(expiryInput, 'Fecha de vencimiento inválida (MM/AA).'); isValid = false; }
+    if (!isValidCVV(cvv)) { showFieldError(cvvInput, 'CVV inválido (3-4 dígitos).'); isValid = false; }
 
     if (!isValid) return;
 
-    // Simular procesamiento de pago
     payBtn.disabled = true;
     payBtn.textContent = 'Procesando...';
     payBtn.style.opacity = '0.7';
 
-    // Simular latencia de red (entre 1.5 y 2.5 segundos)
     const delay = 1500 + Math.random() * 1000;
     setTimeout(() => {
-        // Pago exitoso simulado
         paymentForm.style.display = 'none';
         paymentSuccess.style.display = 'block';
         paymentSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        // Limpiar carrito después de compra exitosa
         cart = [];
         saveCart();
         renderCart();
 
-        // Resetear formulario
         paymentForm.reset();
         payBtn.disabled = false;
         payBtn.textContent = 'Realizar Pago';
         payBtn.style.opacity = '1';
 
-        // Cerrar modal automáticamente después de 5 segundos
         setTimeout(() => {
             if (checkoutModal.classList.contains('active')) {
                 closeCheckoutModal();
@@ -442,17 +335,10 @@ function processPayment(e) {
     }, delay);
 }
 
-// Asignar evento de submit al formulario
 paymentForm.addEventListener('submit', processPayment);
-
-// También prevenir envío al hacer clic en el botón (por si acaso)
-payBtn.addEventListener('click', function(e) {
-    // El evento submit se disparará igual, solo nos aseguramos
-});
+payBtn.addEventListener('click', function(e) {});
 
 // ---------- MEJORAS DE UX ADICIONALES ----------
-
-// Cerrar carrito con tecla Escape
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         if (checkoutModal.classList.contains('active')) {
@@ -463,7 +349,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Animación suave al hacer scroll a secciones (por si hay anclas)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
@@ -471,30 +356,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(targetId);
         if (target) {
             e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
 
-// Efecto parallax sutil en el hero al mover el mouse (opcional)
+// Optimización del efecto parallax con requestAnimationFrame
 const hero = document.querySelector('.hero');
 if (hero && window.innerWidth > 768) {
+    let ticking = false;
     hero.addEventListener('mousemove', function(e) {
-        const { clientX, clientY } = e;
-        const moveX = (clientX - window.innerWidth / 2) * 0.005;
-        const moveY = (clientY - window.innerHeight / 2) * 0.005;
-        hero.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+                hero.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
     hero.addEventListener('mouseleave', function() {
-        hero.style.transform = 'translate(0, 0)';
-        hero.style.transition = 'transform 0.6s ease-out';
+        window.requestAnimationFrame(() => {
+            hero.style.transform = 'translate(0, 0)';
+            hero.style.transition = 'transform 0.6s ease-out';
+        });
     });
 }
 
-// Actualizar año en el footer automáticamente
 const yearSpan = document.querySelector('.footer-bottom p');
 if (yearSpan) {
     const currentYear = new Date().getFullYear();
@@ -502,5 +391,8 @@ if (yearSpan) {
 }
 
 // ---------- CIERRE E INICIALIZACIÓN FINAL ----------
+document.addEventListener('DOMContentLoaded', function() {
+    loadCart();
+    renderCart();
+});
 console.log('Resina Luxa – Tienda online lista.');
-console.log('Carrito inicial:', cart);
