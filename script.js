@@ -1,55 +1,54 @@
 /* ============================
-   RESINA LUXA – SCRIPT
+   RESINA LUXA – SCRIPT (PT-BR)
    ============================ */
 
 'use strict';
 
-// ---------- BASE DE DATOS DE PRODUCTOS (Descripciones Profundas) ----------
+// ---------- BASE DE DADOS DE PRODUTOS (Descrições Profundas) ----------
 const productsData = {
     1: {
-        desc: "La Mesa Rio Claro es la encarnación del diseño biofílico. Cada veta de la madera de nogal americano es seleccionada meticulosamente a mano para complementar el río central de resina epoxi cristalina. Su proceso de pulido de 12 etapas garantiza una superficie impecable que invita al tacto, convirtiéndose en el centro de gravedad de cualquier salón contemporáneo.",
-        materiales: "<li><strong>Madera:</strong> Nogal americano macizo curado durante 3 años.</li><li><strong>Resina:</strong> Epoxi grado óptico de ultra transparencia.</li><li><strong>Acabado:</strong> Aceite de tung natural y cera de abejas.</li><li><strong>Medidas:</strong> 180 cm x 90 cm x 4 cm.</li>"
+        desc: "A Mesa Rio Claro é a encarnação do design biofílico. Cada veio da madeira de nogueira americana é selecionado meticulosamente à mão para complementar o rio central de resina epóxi cristalina. Seu processo de polimento de 12 etapas garante uma superfície impecável que convida ao toque, tornando-se o centro das atenções de qualquer sala contemporânea.",
+        materiales: "<li><strong>Madeira:</strong> Nogueira americana maciça curada por 3 anos.</li><li><strong>Resina:</strong> Epóxi grau óptico de ultra transparência.</li><li><strong>Acabamento:</strong> Óleo de tungue natural e cera de abelhas.</li><li><strong>Medidas:</strong> 180 cm x 90 cm x 4 cm.</li>"
     },
     2: {
-        desc: "Inspirada en el flujo constante y pacífico del agua, la Mesa Onda Suave destaca por la integración casi imperceptible entre la cálida madera de fresno y un sinuoso camino de resina azul translúcida. Ideal para crear espacios de serenidad, esta pieza interactúa maravillosamente con la luz natural del día.",
-        materiales: "<li><strong>Madera:</strong> Fresno europeo con tratamiento antifúngico.</li><li><strong>Resina:</strong> Epoxi premium pigmentada en azul cielo translúcido.</li><li><strong>Acabado:</strong> Barniz poliuretánico mate de alta resistencia.</li><li><strong>Medidas:</strong> 160 cm x 80 cm x 4 cm.</li>"
+        desc: "Inspirada no fluxo constante e pacífico da água, a Mesa Onda Suave destaca-se pela integração quase imperceptível entre a cálida madeira de freixo e um sinuoso caminho de resina azul translúcida. Ideal para criar espaços de serenidade, esta peça interage maravilhosamente com a luz natural do dia.",
+        materiales: "<li><strong>Madeira:</strong> Freixo europeu com tratamento antifúngico.</li><li><strong>Resina:</strong> Epóxi premium pigmentada em azul celeste translúcido.</li><li><strong>Acabamento:</strong> Verniz poliuretano fosco de alta resistência.</li><li><strong>Medidas:</strong> 160 cm x 80 cm x 4 cm.</li>"
     },
     3: {
-        desc: "Capturando la esencia efímera de los cielos crepusculares brasileños, la Mesa Atardecer utiliza una compleja técnica de vertido multicapa. La transición perfecta del naranja ardiente al rosa profundo se asienta sobre la robustez innegable del roble, creando una obra de arte funcional que irradia calidez.",
-        materiales: "<li><strong>Madera:</strong> Roble macizo seleccionado por su grano expresivo.</li><li><strong>Resina:</strong> Mezcla tricapa con pigmentos metálicos naranja, rosa y oro.</li><li><strong>Base:</strong> Acero al carbono con pintura electrostática negra.</li><li><strong>Medidas:</strong> 200 cm x 100 cm x 5 cm.</li>"
+        desc: "Capturando a essência efêmera dos fins de tarde brasileiros, a Mesa Entardecer utiliza uma complexa técnica de derramamento multicamadas. A transição perfeita do laranja ardente ao rosa profundo assenta-se sobre a robustez inegável do carvalho, criando uma obra de arte funcional que irradia calor.",
+        materiales: "<li><strong>Madeira:</strong> Carvalho maciço selecionado por seus veios expressivos.</li><li><strong>Resina:</strong> Mistura tricamada com pigmentos metálicos laranja, rosa e ouro.</li><li><strong>Base:</strong> Aço carbono com pintura eletrostática preta.</li><li><strong>Medidas:</strong> 200 cm x 100 cm x 5 cm.</li>"
     },
     4: {
-        desc: "Una verdadera obra maestra artesanal. Para crear la Mesa Geoda, nuestros artesanos tallan los bordes internos del nogal negro y realizan incrustaciones manuales de cristales de cuarzo auténticos antes de verter la resina amatista. El resultado es la simulación perfecta de una geoda cortada, aportando una energía inigualable a tu espacio.",
-        materiales: "<li><strong>Madera:</strong> Nogal negro silvestre.</li><li><strong>Incrustaciones:</strong> Fragmentos de cuarzo real y laca blanca.</li><li><strong>Resina:</strong> Epoxi violeta amatista de alto brillo.</li><li><strong>Medidas:</strong> 100 cm x 100 cm x 6 cm.</li>"
+        desc: "Uma verdadeira obra-prima artesanal. Para criar a Mesa Geodo, nossos artesãos esculpem as bordas internas da nogueira preta e realizam incrustações manuais de cristais de quartzo autênticos antes de derramar a resina ametista. O resultado é a simulação perfeita de um geodo cortado, trazendo uma energia inigualável ao seu espaço.",
+        materiales: "<li><strong>Madeira:</strong> Nogueira preta silvestre.</li><li><strong>Incrustações:</strong> Fragmentos de quartzo real e laca branca.</li><li><strong>Resina:</strong> Epóxi violeta ametista de alto brilho.</li><li><strong>Medidas:</strong> 100 cm x 100 cm x 6 cm.</li>"
     },
     5: {
-        desc: "Lleva la majestuosidad del universo a tu comedor. Mediante un proceso patentado de incrustación de fibra óptica y micro LEDs regulables encapsulados en resina color negro vacío, la Mesa Constelación cobra vida al anochecer. Con su control remoto oculto, puedes ajustar el brillo y el parpadeo de tus propias estrellas privadas.",
-        materiales: "<li><strong>Madera:</strong> Caoba brasileña de origen sostenible.</li><li><strong>Tecnología:</strong> Sistema de iluminación LED de bajo consumo (batería recargable).</li><li><strong>Resina:</strong> Negro azabache profundo con láminas de plata 925.</li><li><strong>Medidas:</strong> 220 cm x 100 cm x 5 cm.</li>"
+        desc: "Traga a majestade do universo para a sua sala de jantar. Através de um processo patenteado de incrustação de fibra óptica e micro LEDs reguláveis encapsulados em resina preta, a Mesa Constelação ganha vida ao anoitecer. Com seu controle remoto oculto, você pode ajustar o brilho e a cintilação das suas próprias estrelas particulares.",
+        materiales: "<li><strong>Madeira:</strong> Mogno brasileiro de origem sustentável.</li><li><strong>Tecnologia:</strong> Sistema de iluminação LED de baixo consumo (bateria recarregável).</li><li><strong>Resina:</strong> Preto azeviche profundo com lascas de prata 925.</li><li><strong>Medidas:</strong> 220 cm x 100 cm x 5 cm.</li>"
     },
     6: {
-        desc: "El lujo clásico del Renacimiento reinventado para el siglo XXI. A través de una técnica secreta de manipulación térmica de la resina durante su curado, logramos vetas idénticas a las del mármol Carrara, pero fusionadas de manera orgánica con una impecable base de teca cálida. La elegancia de la piedra sin su peso aplastante.",
-        materiales: "<li><strong>Madera:</strong> Teca brasileña torneada con precisión geométrica.</li><li><strong>Resina:</strong> Epoxi blanca opaca con inyección de pigmentos grises perlados.</li><li><strong>Acabado:</strong> Revestimiento cerámico antirayaduras.</li><li><strong>Medidas:</strong> Diámetro 120 cm, altura 76 cm.</li>"
+        desc: "O luxo clássico do Renascimento reinventado para o século XXI. Através de uma técnica secreta de manipulação térmica da resina durante a sua cura, conseguimos veios idênticos aos do mármore Carrara, mas fundidos de forma orgânica com uma impecável base de teca cálida. A elegância da pedra sem o seu peso esmagador.",
+        materiales: "<li><strong>Madeira:</strong> Teca brasileira torneada com precisão geométrica.</li><li><strong>Resina:</strong> Epóxi branca opaca com injeção de pigmentos cinzas perolados.</li><li><strong>Acabamento:</strong> Revestimento cerâmico anti-riscos.</li><li><strong>Medidas:</strong> Diâmetro 120 cm, altura 76 cm.</li>"
     },
     7: {
-        desc: "Siente la textura visual de las costas paradisíacas. Para la Mesa Océano utilizamos arena natural esterilizada y múltiples vertidos de resinas de grado óptico. El efecto de espuma tridimensional, creado mediante soplado de aire caliente sobre pigmentos blancos, ofrece un hiperrealismo que te transportará directamente a la playa cada vez que te sientes a la mesa.",
-        materiales: "<li><strong>Madera:</strong> Roble rústico con bordes vivos (Live Edge).</li><li><strong>Incrustaciones:</strong> Arena real de playas brasileñas seleccionadas.</li><li><strong>Resina:</strong> Multicapa (Turquesa, Azul Profundo y Espuma Blanca).</li><li><strong>Medidas:</strong> 190 cm x 85 cm x 5 cm.</li>"
+        desc: "Sinta a textura visual das costas paradisíacas. Para a Mesa Oceano utilizamos areia natural esterilizada e múltiplos derramamentos de resinas de grau óptico. O efeito de espuma tridimensional, criado mediante sopro de ar quente sobre pigmentos brancos, oferece um hiper-realismo que o transportará diretamente para a praia cada vez que se sentar à mesa.",
+        materiales: "<li><strong>Madeira:</strong> Carvalho rústico com bordas vivas (Live Edge).</li><li><strong>Incrustações:</strong> Areia real de praias brasileiras selecionadas.</li><li><strong>Resina:</strong> Multicamada (Turquesa, Azul Profundo e Espuma Branca).</li><li><strong>Medidas:</strong> 190 cm x 85 cm x 5 cm.</li>"
     },
     8: {
-        desc: "Desafiando la gravedad y lo convencional, esta mesa no es solo un mueble, sino una escultura tridimensional. Dos bloques imponentes de ébano encuadran una lámina vertical de resina extra clara. El curado se realiza en cámaras de presión al vacío para eliminar hasta la burbuja más microscópica, creando la ilusión perfecta de agua cayendo y congelada en el tiempo.",
-        materiales: "<li><strong>Madera:</strong> Ébano macizo de altísima densidad y peso.</li><li><strong>Resina:</strong> Bloque sólido de epoxi grado museo extra claro.</li><li><strong>Soporte:</strong> Estructura interna de titanio oculta.</li><li><strong>Medidas:</strong> 130 cm x 70 cm x 40 cm.</li>"
+        desc: "Desafiando a gravidade e o convencional, esta mesa não é apenas um móvel, mas uma escultura tridimensional. Dois blocos imponentes de ébano emolduram uma lâmina vertical de resina extra clara. A cura é realizada em câmaras de pressão a vácuo para eliminar até a bolha mais microscópica, criando a ilusão perfeita de água caindo e congelada no tempo.",
+        materiales: "<li><strong>Madeira:</strong> Ébano maciço de altíssima densidade e peso.</li><li><strong>Resina:</strong> Bloco sólido de epóxi grau museu extra clara.</li><li><strong>Suporte:</strong> Estrutura interna de titânio oculta.</li><li><strong>Medidas:</strong> 130 cm x 70 cm x 40 cm.</li>"
     },
     9: {
-        desc: "Una audaz exploración de la alquimia moderna. El polvo de cobre auténtico suspendido en la resina genera un espectáculo lumínico en constante cambio según el ángulo en que se mire. Las vetas rojizas de la exótica madera de Padouk abrazan este río metálico, conformando una mesa robusta, industrial pero sofisticadamente lujosa.",
-        materiales: "<li><strong>Madera:</strong> Padouk africano de intenso color rojo-anaranjado natural.</li><li><strong>Resina:</strong> Epoxi oscura saturada con polvo de cobre de pureza 99%.</li><li><strong>Acabado:</strong> Pulido espejo de alto brillo.</li><li><strong>Medidas:</strong> 240 cm x 100 cm x 6 cm.</li>"
+        desc: "Uma audaciosa exploração da alquimia moderna. O pó de cobre autêntico suspenso na resina gera um espetáculo luminoso em constante mudança conforme o ângulo em que se olha. Os veios avermelhados da exótica madeira de Padouk abraçam este rio metálico, formando uma mesa robusta, industrial, porém sofisticadamente luxuosa.",
+        materiales: "<li><strong>Madeira:</strong> Padouk africano de intensa cor vermelho-alaranjada natural.</li><li><strong>Resina:</strong> Epóxi escura saturada com pó de cobre de pureza 99%.</li><li><strong>Acabamento:</strong> Polimento espelhado de alto brilho.</li><li><strong>Medidas:</strong> 240 cm x 100 cm x 6 cm.</li>"
     },
     10: {
-        desc: "La obra maestra absoluta y la joya de la corona de Resina Luxa. La Mesa Aurum fusiona el increíblemente raro y denso ébano africano con auténticas láminas de oro puro de 24 quilates suspendidas en un abismo de resina negra. Una mesa monumental diseñada para los salones más exclusivos, dictando autoridad, poder y un gusto irrefutable.",
-        materiales: "<li><strong>Madera:</strong> Ébano africano macizo, una de las maderas más raras del mundo.</li><li><strong>Metales:</strong> Láminas certificadas de oro de 24K y polvo de oro fino.</li><li><strong>Resina:</strong> Resina epoxi negra de grado aeroespacial.</li><li><strong>Medidas:</strong> 280 cm x 120 cm x 7 cm (Pieza numerada).</li>"
+        desc: "A obra-prima absoluta e a joia da coroa da Resina Luxa. A Mesa Aurum funde o incrivelmente raro e denso ébano africano com autênticas folhas de ouro puro de 24 quilates suspensas em um abismo de resina preta. Uma mesa monumental projetada para as salas mais exclusivas, ditando autoridade, poder e um gosto irrefutável.",
+        materiales: "<li><strong>Madeira:</strong> Ébano africano maciço, uma das madeiras mais raras do mundo.</li><li><strong>Metais:</strong> Folhas certificadas de ouro de 24K e pó de ouro fino.</li><li><strong>Resina:</strong> Resina epóxi preta de grau aeroespacial.</li><li><strong>Medidas:</strong> 280 cm x 120 cm x 7 cm (Peça numerada).</li>"
     }
 };
 
-
-// ---------- ELEMENTOS DEL DOM ----------
+// ---------- ELEMENTOS DO DOM ----------
 const cartToggle = document.getElementById('cart-toggle');
 const cartSidebar = document.getElementById('cart-sidebar');
 const cartOverlay = document.getElementById('cart-overlay');
@@ -76,7 +75,7 @@ const cardNumberInput = document.getElementById('card-number');
 const expiryInput = document.getElementById('expiry');
 const cvvInput = document.getElementById('cvv');
 
-// Elementos del Nuevo Modal de Producto
+// Elementos do Novo Modal de Produto
 const productModal = document.getElementById('product-detail-modal');
 const productOverlay = document.getElementById('product-detail-overlay');
 const closeProductModalBtn = document.getElementById('close-product-modal');
@@ -87,11 +86,12 @@ const detailInstallments = document.getElementById('detail-installments');
 const detailDesc = document.getElementById('detail-desc');
 const detailMaterials = document.getElementById('detail-materials');
 const detailAddToCartBtn = document.getElementById('detail-add-to-cart');
+const detailWhatsappBtn = document.getElementById('detail-whatsapp-btn'); // Botão WA do Modal
 
-// ---------- ESTADO DEL CARRITO ----------
+// ---------- ESTADO DO CARRINHO ----------
 let cart = [];
 
-// ---------- FUNCIONES DEL CARRITO ----------
+// ---------- FUNÇÕES DO CARRINHO ----------
 function saveCart() {
     localStorage.setItem('resinaLuxaCart', JSON.stringify(cart));
 }
@@ -121,7 +121,7 @@ function formatPrice(price) {
 
 function renderCart() {
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="cart-empty">No hay productos en el carrito.</p>';
+        cartItemsContainer.innerHTML = '<p class="cart-empty">Não há produtos no carrinho.</p>';
         checkoutBtn.style.display = 'none';
     } else {
         checkoutBtn.style.display = 'block';
@@ -155,7 +155,6 @@ function addToCart(id, nombre, precio) {
     }
     renderCart();
     
-    // Si el modal de detalles está abierto, lo cerramos sutilmente
     if (productModal.classList.contains('active')) {
         closeProductModal();
     }
@@ -206,7 +205,7 @@ function closeCart() {
 }
 
 
-// ---------- FUNCIONES DEL MODAL DE DETALLES DEL PRODUCTO ----------
+// ---------- FUNÇÕES DO MODAL DE DETALHES DO PRODUTO ----------
 function openProductModal(id, imgUrl, title, priceNum, priceStr, installmentsStr) {
     const data = productsData[id];
     if(!data) return;
@@ -218,15 +217,18 @@ function openProductModal(id, imgUrl, title, priceNum, priceStr, installmentsStr
     detailDesc.innerHTML = data.desc;
     detailMaterials.innerHTML = data.materiales;
     
-    // Configurar botón de compra
+    // Configurar o botão do Carrinho
     detailAddToCartBtn.dataset.id = id;
     detailAddToCartBtn.dataset.nombre = title;
     detailAddToCartBtn.dataset.precio = priceNum;
-    
-    // Resetear texto del botón por si fue presionado antes
-    detailAddToCartBtn.textContent = 'Agregar al Carrito';
+    detailAddToCartBtn.textContent = 'Adicionar ao Carrinho';
     detailAddToCartBtn.style.background = '';
     detailAddToCartBtn.style.color = '';
+
+    // Configurar o botão Dinâmico de WhatsApp
+    const whatsappText = `Olá! Estou interessada na ${title}. Gostaria de mais informações.`;
+    const waUrl = `https://wa.me/5511999990000?text=${encodeURIComponent(whatsappText)}`;
+    detailWhatsappBtn.href = waUrl;
 
     productModal.classList.add('active');
     productOverlay.classList.add('active');
@@ -241,18 +243,15 @@ function closeProductModal() {
     }
 }
 
-// Botón de cerrar el Modal de Producto
 closeProductModalBtn.addEventListener('click', closeProductModal);
 productOverlay.addEventListener('click', closeProductModal);
 
-// Botón "Agregar al Carrito" DENTRO del Modal de Producto
 detailAddToCartBtn.addEventListener('click', function() {
     const id = parseInt(this.dataset.id);
     const nombre = this.dataset.nombre;
     const precio = parseFloat(this.dataset.precio);
 
-    // Feedback visual en el botón
-    this.textContent = '✓ Agregando...';
+    this.textContent = '✓ Adicionado...';
     this.style.background = 'var(--color-dorado)';
     this.style.color = '#0b0a0a';
     
@@ -261,26 +260,23 @@ detailAddToCartBtn.addEventListener('click', function() {
     }, 400);
 });
 
-
-// ---------- EVENT LISTENERS INICIALES Y DELEGACIÓN ----------
-
-// Delegación de eventos para el catálogo (Maneja el click en "Agregar" y en "Abrir Modal")
+// ---------- EVENT LISTENERS (DELEGAÇÃO) ----------
 document.querySelector('.catalogo-grid').addEventListener('click', function(e) {
     const article = e.target.closest('.producto-card');
     if (!article) return;
 
-    // Si se hizo click en el botón de agregar directo al carrito
+    // Se clicar no botão de adicionar direto
     const btnCart = e.target.closest('.agregar-carrito');
     if (btnCart) {
         const id = parseInt(btnCart.dataset.id);
         const nombre = btnCart.dataset.nombre;
         const precio = parseFloat(btnCart.dataset.precio);
 
-        btnCart.textContent = '✓ Agregado';
+        btnCart.textContent = '✓ Adicionado';
         btnCart.style.background = 'var(--color-dorado)';
         btnCart.style.color = '#0b0a0a';
         setTimeout(() => {
-            btnCart.textContent = 'Agregar al Carrito';
+            btnCart.textContent = 'Adicionar ao Carrinho';
             btnCart.style.background = '';
             btnCart.style.color = '';
         }, 1200);
@@ -289,9 +285,12 @@ document.querySelector('.catalogo-grid').addEventListener('click', function(e) {
         return; 
     }
 
-    // Si se hizo click en la imagen o el titulo (disparadores del modal)
+    // Se clicar na imagem ou título (abre o modal)
+    // Excluimos o botão de WhatsApp para que não abra o modal se clicarem nele
     const modalTrigger = e.target.closest('.open-modal-trigger');
-    if (modalTrigger) {
+    const isWhatsappBtn = e.target.closest('.btn-whatsapp-overlay');
+    
+    if (modalTrigger && !isWhatsappBtn) {
         const id = article.dataset.id;
         const imgUrl = article.querySelector('img').src;
         const title = article.querySelector('.producto-nombre').textContent;
@@ -304,7 +303,6 @@ document.querySelector('.catalogo-grid').addEventListener('click', function(e) {
 });
 
 
-// Delegación de eventos para las interacciones dentro del carrito
 cartItemsContainer.addEventListener('click', function(e) {
     if (e.target.classList.contains('cart-item-increase')) {
         increaseQuantity(parseInt(e.target.dataset.id));
@@ -327,7 +325,7 @@ cartToggle.addEventListener('click', function(e) {
 cartClose.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
 
-// ---------- CHECKOUT Y PAGOS ----------
+// ---------- CHECKOUT E PAGAMENTOS ----------
 function renderCheckoutResumen() {
     if (cart.length === 0) return;
 
@@ -342,7 +340,7 @@ function renderCheckoutResumen() {
 
 function openCheckout() {
     if (cart.length === 0) {
-        alert('Tu carrito está vacío. Agrega mesas antes de proceder al pago.');
+        alert('Seu carrinho está vazio. Adicione mesas antes de prosseguir para o pagamento.');
         return;
     }
     renderCheckoutResumen();
@@ -364,7 +362,7 @@ checkoutBtn.addEventListener('click', openCheckout);
 closeCheckout.addEventListener('click', closeCheckoutModal);
 checkoutOverlay.addEventListener('click', closeCheckoutModal);
 
-// Validaciones del formulario
+// Validações do formulário
 function isNotEmpty(value) { return value.trim() !== ''; }
 function isValidEmail(email) { const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; return regex.test(email); }
 function isValidCardNumber(number) { const digitsOnly = number.replace(/\s/g, ''); return /^\d{16}$/.test(digitsOnly); }
@@ -398,7 +396,7 @@ function clearAllErrors() {
     });
 }
 
-// Formateos en vivo de tarjeta
+// Formatações ao vivo do cartão
 cardNumberInput.addEventListener('input', function(e) {
     let value = e.target.value.replace(/\s/g, '').replace(/[^\d]/g, '');
     if (value.length > 16) value = value.slice(0, 16);
@@ -419,7 +417,7 @@ cvvInput.addEventListener('input', function(e) {
     e.target.value = e.target.value.replace(/[^\d]/g, '').slice(0, 4);
 });
 
-// Procesamiento simulado del pago
+// Processamento simulado do pagamento
 function processPayment(e) {
     e.preventDefault();
     clearAllErrors();
@@ -434,18 +432,18 @@ function processPayment(e) {
 
     let isValid = true;
 
-    if (!isNotEmpty(nome)) { showFieldError(nomeInput, 'El nombre es obligatorio.'); isValid = false; }
-    if (!isValidEmail(email)) { showFieldError(emailInput, 'Ingresa un correo válido.'); isValid = false; }
-    if (!isNotEmpty(direccion)) { showFieldError(direccionInput, 'La dirección es obligatoria.'); isValid = false; }
-    if (pais === '') { showFieldError(paisSelect, 'Selecciona un país de entrega.'); isValid = false; }
-    if (!isValidCardNumber(cardNumber)) { showFieldError(cardNumberInput, 'Número de tarjeta inválido (16 dígitos).'); isValid = false; }
-    if (!isValidExpiry(expiry)) { showFieldError(expiryInput, 'Fecha de vencimiento inválida (MM/AA).'); isValid = false; }
+    if (!isNotEmpty(nome)) { showFieldError(nomeInput, 'O nome é obrigatório.'); isValid = false; }
+    if (!isValidEmail(email)) { showFieldError(emailInput, 'Insira um e-mail válido.'); isValid = false; }
+    if (!isNotEmpty(direccion)) { showFieldError(direccionInput, 'O endereço é obrigatório.'); isValid = false; }
+    if (pais === '') { showFieldError(paisSelect, 'Selecione um país de entrega.'); isValid = false; }
+    if (!isValidCardNumber(cardNumber)) { showFieldError(cardNumberInput, 'Número do cartão inválido (16 dígitos).'); isValid = false; }
+    if (!isValidExpiry(expiry)) { showFieldError(expiryInput, 'Data de vencimento inválida (MM/AA).'); isValid = false; }
     if (!isValidCVV(cvv)) { showFieldError(cvvInput, 'CVV inválido (3-4 dígitos).'); isValid = false; }
 
     if (!isValid) return;
 
     payBtn.disabled = true;
-    payBtn.textContent = 'Procesando...';
+    payBtn.textContent = 'Processando...';
     payBtn.style.opacity = '0.7';
 
     const delay = 1500 + Math.random() * 1000;
@@ -460,7 +458,7 @@ function processPayment(e) {
 
         paymentForm.reset();
         payBtn.disabled = false;
-        payBtn.textContent = 'Realizar Pago';
+        payBtn.textContent = 'Realizar Pagamento';
         payBtn.style.opacity = '1';
 
         setTimeout(() => {
@@ -475,8 +473,7 @@ function processPayment(e) {
 
 paymentForm.addEventListener('submit', processPayment);
 
-
-// ---------- MEJORAS DE UX ADICIONALES ----------
+// ---------- MELHORIAS DE UX ----------
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         if (checkoutModal.classList.contains('active')) {
@@ -501,7 +498,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Optimización del efecto parallax con requestAnimationFrame
 const hero = document.querySelector('.hero');
 if (hero && window.innerWidth > 768) {
     let ticking = false;
@@ -524,16 +520,9 @@ if (hero && window.innerWidth > 768) {
     });
 }
 
-const yearSpan = document.querySelector('.footer-bottom p');
-if (yearSpan) {
-    const currentYear = new Date().getFullYear();
-    yearSpan.innerHTML = yearSpan.innerHTML.replace('2026', currentYear);
-}
-
-// ---------- CIERRE E INICIALIZACIÓN FINAL ----------
+// ---------- INICIALIZAÇÃO ----------
 document.addEventListener('DOMContentLoaded', function() {
     loadCart();
     renderCart();
 });
-console.log('Resina Luxa – Tienda online lista con Modales de Producto.');
 
