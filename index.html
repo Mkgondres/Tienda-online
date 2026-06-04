@@ -1,60 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resina Luxa – Mesas de Resina de Luxo</title>
-    <meta name="description" content="Mesas de resina epóxi de alta qualidade. Designs exclusivos, materiais nobres e entrega para toda a América Latina.">
-    <!-- Hoja de estilos externa (se enviará luego) -->
+    <meta name="description" content="Mesas de resina epóxi de alta calidad. Diseños exclusivos, materiales nobles y entrega para toda América Latina.">
     <link rel="stylesheet" href="style.css">
-    <!-- Favicon (placeholder) -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Barra de navegación superior -->
     <header class="navbar">
         <div class="logo">
             <a href="#">Resina<span>Luxa</span></a>
         </div>
         <nav class="nav-links">
-            <a href="#inicio">Início</a>
+            <a href="#inicio">Inicio</a>
             <a href="#catalogo">Catálogo</a>
-            <a href="#contato">Contato</a>
+            <a href="#contato">Contacto</a>
             <a href="#" id="cart-toggle" class="cart-icon">
                 🛒 <span id="cart-count" class="cart-count">0</span>
             </a>
         </nav>
     </header>
 
-    <!-- Sección Hero con video de 21 segundos -->
     <section id="inicio" class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
-            <!-- 
-                NOTA IMPORTANTE: 
-                El video debe durar exactamente 21 segundos. 
-                Debe mostrar el proceso artesanal de creación de mesas de resina:
-                primeros planos de la resina vertiéndose sobre la madera, 
-                el lijado, el pulido final y tomas del brillo característico.
-                Resolución recomendada: 1920x1080p, formato MP4.
-            -->
             <source src="23f3fc1b9be8c74bd1334f5a2edead2a_720w.mp4" type="video/mp4">
             Tu navegador no soporta video HTML5.
         </video>
         <div class="hero-overlay">
-            <h1 class="hero-title">Arte em Resina</h1>
+            <h1 class="hero-title">Arte en Resina</h1>
             <p class="hero-subtitle">Mesas exclusivas que unen diseño y naturaleza. Fabricadas en Brasil, entregadas en toda América Latina.</p>
             <a href="#catalogo" class="btn btn-primary">Explorar Colección</a>
         </div>
     </section>
 
-    <!-- Carrito lateral oculto (se manipulará con JS) -->
     <aside id="cart-sidebar" class="cart-sidebar">
         <div class="cart-header">
             <h2>Tu Carrito</h2>
             <button id="cart-close" class="btn-close">&times;</button>
         </div>
         <div id="cart-items" class="cart-items">
-            <!-- Los productos agregados se renderizarán aquí dinámicamente -->
             <p class="cart-empty">No hay productos en el carrito.</p>
         </div>
         <div class="cart-footer">
@@ -64,7 +50,6 @@
     </aside>
     <div id="cart-overlay" class="overlay"></div>
 
-    <!-- Contenido principal: Catálogo de mesas (primera mitad: mesas 1 a 5) -->
     <main>
         <section id="catalogo" class="catalogo-section">
             <div class="section-header">
@@ -74,273 +59,199 @@
 
             <div class="catalogo-grid">
                 
-                <!-- MESA 1 – Gama baja (diseño sencillo, materiales premium) -->
                 <article class="producto-card" data-id="1">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Foto horizontal de una mesa rectangular de comedor con un "río" de resina transparente 
-                            en el centro. La madera debe ser de nogal americano, con bordes vivos naturales. 
-                            Fondo neutro (blanco o gris claro), iluminación suave que resalte el brillo de la resina. 
-                            Resolución: 1200x800px.
-                        -->
-                        <img src="4e097388379f0e2d7ccb1cbaae2b0c62.jpg" alt="Mesa Rio Claro - resina transparente y nogal">
+                        <img src="4e097388379f0e2d7ccb1cbaae2b0c62.jpg" alt="Mesa Rio Claro - resina transparente y nogal" loading="lazy">
                     </div>
                     <div class="producto-info">
                         <h3 class="producto-nombre">Mesa Rio Claro</h3>
                         <p class="producto-descripcion">Diseño minimalista con río central de resina epoxi cristalina. Ideal para ambientes modernos.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de nogueira americana, resina epoxi transparente de alta resistencia.</li>
+                            <li><strong>Materiales:</strong> Madera de nogal americano, resina epoxi transparente de alta resistencia.</li>
                             <li><strong>Medidas estándar:</strong> 180 cm x 90 cm x 4 cm (personalizable).</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 2.500</span>
-                            <span class="precio-cuotas">ou 12x R$ 208,33</span>
+                            <span class="precio-cuotas">o 12x R$ 208,33</span>
                         </div>
                         <button class="btn btn-comprar agregar-carrito" data-id="1" data-nombre="Mesa Rio Claro" data-precio="2500">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 2 – Gama baja-media (diseño sutil, materiales premium) -->
                 <article class="producto-card" data-id="2">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Foto de una mesa ovalada con una suave onda de resina azul clara que atraviesa la pieza.
-                            Madera de fresno clara. La imagen debe transmitir ligereza, fondo blanco roto, 
-                            luz natural lateral. Resolución: 1200x800px.
-                        -->
-                        <img src="68386ad699b1a4414fcef68a0a3248a2.jpg" alt="Mesa Onda Suave - resina azul y fresno">
+                        <img src="68386ad699b1a4414fcef68a0a3248a2.jpg" alt="Mesa Onda Suave - resina azul y fresno" loading="lazy">
                     </div>
                     <div class="producto-info">
                         <h3 class="producto-nombre">Mesa Onda Suave</h3>
                         <p class="producto-descripcion">Una sutil curva de resina azul translúcida recorre la madera de fresno, creando un efecto calmado.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de freijó (fresno), resina epoxi pigmentada en azul cielo.</li>
+                            <li><strong>Materiales:</strong> Madera de fresno, resina epoxi pigmentada en azul cielo.</li>
                             <li><strong>Medidas estándar:</strong> 160 cm x 80 cm x 4 cm.</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 3.200</span>
-                            <span class="precio-cuotas">ou 12x R$ 266,67</span>
+                            <span class="precio-cuotas">o 12x R$ 266,67</span>
                         </div>
                         <button class="btn btn-comprar agregar-carrito" data-id="2" data-nombre="Mesa Onda Suave" data-precio="3200">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 3 – Gama media (diseño colorido, materiales premium) -->
                 <article class="producto-card" data-id="3">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa rectangular con un degradado de resina que va del naranja al rosa intenso, 
-                            insertado en madera de roble. La foto debe capturar el efecto de profundidad del color.
-                            Fondo oscuro para contraste, luz cenital. Resolución: 1200x800px.
-                        -->
-                        <img src="5a37efd1c13f597e9c14f5e44ab604fb.jpg" alt="Mesa Atardecer - resina degradé naranja y rosa">
+                        <img src="5a37efd1c13f597e9c14f5e44ab604fb.jpg" alt="Mesa Atardecer - resina degradé naranja y rosa" loading="lazy">
                     </div>
                     <div class="producto-info">
                         <h3 class="producto-nombre">Mesa Atardecer</h3>
                         <p class="producto-descripcion">Inspirada en los atardeceres brasileños, combina resinas naranja y rosa en un degradado vibrante.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de carvalho europeo, resina epoxi con pigmentos naranja, rosa y dorado.</li>
+                            <li><strong>Materiales:</strong> Madera de roble europeo, resina epoxi con pigmentos naranja, rosa y dorado.</li>
                             <li><strong>Medidas estándar:</strong> 200 cm x 100 cm x 5 cm.</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 4.500</span>
-                            <span class="precio-cuotas">ou 12x R$ 375,00</span>
+                            <span class="precio-cuotas">o 12x R$ 375,00</span>
                         </div>
                         <button class="btn btn-comprar agregar-carrito" data-id="3" data-nombre="Mesa Atardecer" data-precio="4500">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 4 – Gama media-alta (efectos geoda, materiales premium) -->
                 <article class="producto-card" data-id="4">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa de centro cuadrada con efecto geoda en resina: mezcla de púrpura, amatista y blanco 
-                            con bordes de cuarzo. La madera es nogal negro. La imagen debe mostrar detalles del borde 
-                            irregular de la geoda. Fondo gris oscuro, iluminación puntual. Resolución: 1200x800px.
-                        -->
-                        <img src="731fa027f14f380535960aa2cec0b891.jpg" alt="Mesa Geoda - resina efecto amatista y nogal">
+                        <img src="731fa027f14f380535960aa2cec0b891.jpg" alt="Mesa Geoda - resina efecto amatista y nogal" loading="lazy">
                     </div>
                     <div class="producto-info">
                         <h3 class="producto-nombre">Mesa Geoda</h3>
                         <p class="producto-descripcion">Réplica artesanal de una geoda de amatista. Resina con cristales de cuarzo incrustados y vetas metálicas.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de nogueira preta, resina epoxi con pigmentos violeta, laca blanca y polvo de cuarzo.</li>
+                            <li><strong>Materiales:</strong> Madera de nogal negro, resina epoxi con pigmentos violeta, laca blanca y polvo de cuarzo.</li>
                             <li><strong>Medidas estándar:</strong> 100 cm x 100 cm x 6 cm.</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 6.800</span>
-                            <span class="precio-cuotas">ou 12x R$ 566,67</span>
+                            <span class="precio-cuotas">o 12x R$ 566,67</span>
                         </div>
                         <button class="btn btn-comprar agregar-carrito" data-id="4" data-nombre="Mesa Geoda" data-precio="6800">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 5 – Gama alta (constelación con LED, materiales premium) -->
                 <article class="producto-card" data-id="5">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa de comedor con resina negra profunda, salpicada de puntos de luz LED (estrellas) 
-                            y láminas de plata. Madera de caoba. La foto debe ser en un ambiente oscuro para 
-                            que resalten las luces. Resolución: 1200x800px. Incluir una pequeña fuente de luz 
-                            externa que no opaque los LEDs.
-                        -->
-                        <img src="28d81d4cc1aea350cf4a984962bf6bba.jpg" alt="Mesa Constelación - resina negra con estrellas LED">
+                        <img src="28d81d4cc1aea350cf4a984962bf6bba.jpg" alt="Mesa Constelación - resina negra con estrellas LED" loading="lazy">
                     </div>
                     <div class="producto-info">
                         <h3 class="producto-nombre">Mesa Constelación</h3>
                         <p class="producto-descripcion">Una galaxia capturada en resina. Pequeños LEDs simulan estrellas, creando un espectáculo nocturno.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de mogno brasileiro, resina epoxi negra, láminas de prata 925, micro LEDs regulables.</li>
+                            <li><strong>Materiales:</strong> Madera de caoba brasileña, resina epoxi negra, láminas de plata 925, micro LEDs regulables.</li>
                             <li><strong>Medidas estándar:</strong> 220 cm x 100 cm x 5 cm (incluye control remoto).</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 9.500</span>
-                            <span class="precio-cuotas">ou 12x R$ 791,67</span>
+                            <span class="precio-cuotas">o 12x R$ 791,67</span>
                         </div>
                         <button class="btn btn-comprar agregar-carrito" data-id="5" data-nombre="Mesa Constelación" data-precio="9500">Agregar al Carrito</button>
                     </div>
                 </article>
-                <!-- MESA 6 – Gama media (efecto mármol, materiales premium) -->
+
                 <article class="producto-card" data-id="6">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa redonda de comedor (diámetro 120 cm) con resina blanca veteada en gris simulando 
-                            mármol de Carrara. La madera es teca brasileña. La foto debe mostrar la mesa en un 
-                            entorno de comedor luminoso, con luz natural cenital y un plato decorativo encima.
-                            Resolución: 1200x800px.
-                        -->
-                        <img src="4e226ce1f65e31e1c98b63c1b24cc4f1.jpg" alt="Mesa Mármore Líquido - resina efecto mármol y teca">
+                        <img src="4e226ce1f65e31e1c98b63c1b24cc4f1.jpg" alt="Mesa Mármore Líquido - resina efecto mármol y teca" loading="lazy">
                     </div>
                     <div class="producto-info">
-                        <h3 class="producto-nombre">Mesa Mármore Líquido</h3>
+                        <h3 class="producto-nombre">Mesa Mármol Líquido</h3>
                         <p class="producto-descripcion">La elegancia del mármol sin su peso. Resina epoxi blanca con vetas grises sobre una base circular de teca.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de teca brasileira, resina epoxi blanca y gris, acabado brillante antirayaduras.</li>
+                            <li><strong>Materiales:</strong> Madera de teca brasileña, resina epoxi blanca y gris, acabado brillante antirayaduras.</li>
                             <li><strong>Medidas estándar:</strong> Diámetro 120 cm, altura 76 cm.</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 4.200</span>
-                            <span class="precio-cuotas">ou 12x R$ 350,00</span>
+                            <span class="precio-cuotas">o 12x R$ 350,00</span>
                         </div>
-                        <button class="btn btn-comprar agregar-carrito" data-id="6" data-nombre="Mesa Mármore Líquido" data-precio="4200">Agregar al Carrito</button>
+                        <button class="btn btn-comprar agregar-carrito" data-id="6" data-nombre="Mesa Mármol Líquido" data-precio="4200">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 7 – Gama media-alta (oceánica, materiales premium) -->
                 <article class="producto-card" data-id="7">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa rectangular con resina que imita una playa: arena, olas turquesa y blanca rompiendo 
-                            sobre una base de madera de roble rústico. La imagen debe ser muy detallada, mostrando 
-                            el efecto de espuma. Fondo playero o arena real. Resolución: 1200x800px.
-                        -->
-                        <img src="85ddb6e7cb13313e41c1419bc127ba45.jpg" alt="Mesa Oceano - resina efecto playa y roble">
+                        <img src="85ddb6e7cb13313e41c1419bc127ba45.jpg" alt="Mesa Oceano - resina efecto playa y roble" loading="lazy">
                     </div>
                     <div class="producto-info">
-                        <h3 class="producto-nombre">Mesa Oceano</h3>
+                        <h3 class="producto-nombre">Mesa Océano</h3>
                         <p class="producto-descripcion">Un tramo de costa brasileña encapsulado. Arena natural, resinas turquesa, azul y espuma blanca hiperrealista.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de roble rústico, resina epoxi con arena real, pigmentos marinos y efecto espuma.</li>
+                            <li><strong>Materiales:</strong> Madera de roble rústico, resina epoxi con arena real, pigmentos marinos y efecto espuma.</li>
                             <li><strong>Medidas estándar:</strong> 190 cm x 85 cm x 5 cm.</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 7.600</span>
-                            <span class="precio-cuotas">ou 12x R$ 633,33</span>
+                            <span class="precio-cuotas">o 12x R$ 633,33</span>
                         </div>
-                        <button class="btn btn-comprar agregar-carrito" data-id="7" data-nombre="Mesa Oceano" data-precio="7600">Agregar al Carrito</button>
+                        <button class="btn btn-comprar agregar-carrito" data-id="7" data-nombre="Mesa Océano" data-precio="7600">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 8 – Gama alta (paredes de agua, materiales premium) -->
                 <article class="producto-card" data-id="8">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa de centro escultural con dos niveles de resina que forman un vacío central con 
-                            un “muro de agua” vertical congelado. Madera de ébano. La foto debe destacar la 
-                            transparencia y la profundidad, sobre fondo negro. Resolución: 1200x800px.
-                        -->
-                        <img src="b6c49255a512e73a837d855ee1dc8e19.jpg" alt="Mesa Pared de Agua - resina vertical y ébano">
+                        <img src="b6c49255a512e73a837d855ee1dc8e19.jpg" alt="Mesa Pared de Agua - resina vertical y ébano" loading="lazy">
                     </div>
                     <div class="producto-info">
-                        <h3 class="producto-nombre">Mesa Pared de Água</h3>
+                        <h3 class="producto-nombre">Mesa Pared de Agua</h3>
                         <p class="producto-descripcion">Una escultura funcional. Dos capas de madera de ébano enmarcan una lámina vertical de resina que simula agua pura en movimiento.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de ébano macizo, resina epoxi extra clara con efecto de flujo lento.</li>
+                            <li><strong>Materiales:</strong> Madera de ébano macizo, resina epoxi extra clara con efecto de flujo lento.</li>
                             <li><strong>Medidas estándar:</strong> 130 cm x 70 cm x 40 cm de alto.</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 11.200</span>
-                            <span class="precio-cuotas">ou 12x R$ 933,33</span>
+                            <span class="precio-cuotas">o 12x R$ 933,33</span>
                         </div>
-                        <button class="btn btn-comprar agregar-carrito" data-id="8" data-nombre="Mesa Pared de Água" data-precio="11200">Agregar al Carrito</button>
+                        <button class="btn btn-comprar agregar-carrito" data-id="8" data-nombre="Mesa Pared de Agua" data-precio="11200">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 9 – Gama alta (con incrustaciones metálicas, materiales premium) -->
                 <article class="producto-card" data-id="9">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa de comedor para 8 personas con resina color cobre oxidado e incrustaciones de 
-                            láminas de latón. Base de madera de padouk africano. La foto debe mostrar reflejos 
-                            metálicos y la riqueza del color. Iluminación lateral cálida. Resolución: 1200x800px.
-                        -->
-                        <img src="d3b50fbaebd2a67f2e7f8d178716a5b1.jpg" alt="Mesa Cobre Vivo - resina cobriza y padouk">
+                        <img src="d3b50fbaebd2a67f2e7f8d178716a5b1.jpg" alt="Mesa Cobre Vivo - resina cobriza y padouk" loading="lazy">
                     </div>
                     <div class="producto-info">
                         <h3 class="producto-nombre">Mesa Cobre Vivo</h3>
                         <p class="producto-descripcion">Resina con pigmentos de cobre real y detalles dorados en un fondo negro profundo.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de padouk, resina epoxi con polvo de cobre, pigmentos dorados y pátina controlada.</li>
+                            <li><strong>Materiales:</strong> Madera de padouk, resina epoxi con polvo de cobre, pigmentos dorados y pátina controlada.</li>
                             <li><strong>Medidas estándar:</strong> 240 cm x 100 cm x 6 cm.</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 13.000</span>
-                            <span class="precio-cuotas">ou 12x R$ 1.083,33</span>
+                            <span class="precio-cuotas">o 12x R$ 1.083,33</span>
                         </div>
                         <button class="btn btn-comprar agregar-carrito" data-id="9" data-nombre="Mesa Cobre Vivo" data-precio="13000">Agregar al Carrito</button>
                     </div>
                 </article>
 
-                <!-- MESA 10 – Gama exclusiva (alto diseño, materiales premium) -->
                 <article class="producto-card" data-id="10">
                     <div class="producto-img">
-                        <!-- 
-                            NOTA PARA LA FOTO:
-                            Mesa de conferencias monumental con un diseño de río doble: dos corrientes de resina 
-                            dorada y negra que se entrecruzan. Madera de ébano y detalles en pan de oro. 
-                            La foto debe ser en un loft de arquitectura moderna, con luz artificial de galería.
-                            Resolución: 1200x800px.
-                        -->
-                        <img src="278a576f1d1d23b9ba371f77e372b5bc.jpg" alt="Mesa Aurum - resina negra translucida y dorada con pan de oro">
+                        <img src="278a576f1d1d23b9ba371f77e372b5bc.jpg" alt="Mesa Aurum - resina negra translucida y dorada con pan de oro" loading="lazy">
                     </div>
                     <div class="producto-info">
                         <h3 class="producto-nombre">Mesa Aurum</h3>
                         <p class="producto-descripcion">Exclusiva joya de diseño: maderas nobles y surcadas por un majestuoso rio de resina negra y oro de 24K.</p>
                         <ul class="producto-materiales">
-                            <li><strong>Materiales:</strong> Madeira de ébano africano, resina epoxi negra, resina dorada con pan de oro 24k, acabado cerámico.</li>
+                            <li><strong>Materiales:</strong> Madera de ébano africano, resina epoxi negra, resina dorada con pan de oro 24k, acabado cerámico.</li>
                             <li><strong>Medidas estándar:</strong> 280 cm x 120 cm x 7 cm (pieza única bajo pedido).</li>
                         </ul>
                         <div class="producto-precio">
                             <span class="precio">R$ 22.000</span>
-                            <span class="precio-cuotas">ou 12x R$ 1.833,33</span>
+                            <span class="precio-cuotas">o 12x R$ 1.833,33</span>
                         </div>
                         <button class="btn btn-comprar agregar-carrito" data-id="10" data-nombre="Mesa Aurum" data-precio="22000">Agregar al Carrito</button>
                     </div>
                 </article>
 
-            </div> <!-- cierre de .catalogo-grid -->
-        </section> <!-- cierre de #catalogo -->
+            </div>
+        </section>
 
-        <!-- SECCIÓN DE CHECKOUT / PAGO (oculta por defecto) -->
         <section id="checkout-section" class="checkout-modal">
             <div class="checkout-container">
                 <h2 class="checkout-title">Finalizar Compra</h2>
@@ -419,7 +330,6 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer id="contato" class="footer">
         <div class="footer-content">
             <div class="footer-col">
@@ -444,7 +354,6 @@
         </div>
     </footer>
 
-    <!-- Enlace al archivo JavaScript (se enviará después) -->
     <script src="script.js"></script>
 </body>
 </html>
