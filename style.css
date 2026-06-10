@@ -957,3 +957,63 @@ p {
         text-align: left; /* En móviles a veces el justificado se ve raro, izquierda es mejor */
     }
 }
+/* ==========================================================================
+   BOTÓN DE ACCIÓN: WHATSAPP EXCLUSIVO (CATÁLOGO)
+   ========================================================================== */
+
+.whatsapp-cta-container {
+    text-align: center;
+    margin: 4rem auto 2rem auto; /* Espaciado superior para separarlo de los productos */
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.btn-whatsapp-exclusive {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 1.2rem 2.8rem;
+    background-color: transparent;
+    color: #c5a880; /* El tono dorado/bronce que usan tus precios */
+    border: 1px solid #c5a880; /* Borde fino dorado */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.btn-whatsapp-exclusive svg {
+    width: 22px;
+    height: 22px;
+    fill: #c5a880; /* Icono del mismo color dorado */
+    transition: fill 0.4s ease;
+}
+
+/* Efecto de Lujo al pasar el mouse (Hover) */
+.btn-whatsapp-exclusive:hover {
+    background-color: #c5a880; /* Se rellena de dorado */
+    color: #0b0b0b; /* El texto pasa a negro/oscuro */
+    box-shadow: 0 4px 20px rgba(197, 168, 128, 0.2); /* Destello sutil */
+}
+
+.btn-whatsapp-exclusive:hover svg {
+    fill: #0b0b0b; /* El icono pasa a negro/oscuro */
+}
+
+/* Adaptación para teléfonos móviles */
+@media (max-width: 768px) {
+    .whatsapp-cta-container {
+        margin: 3rem auto 1rem auto;
+    }
+    .btn-whatsapp-exclusive {
+        display: flex;
+        width: 100%; /* Se adapta al ancho completo de la pantalla del móvil */
+        padding: 1.1rem 1.5rem;
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+    }
+}
